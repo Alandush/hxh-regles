@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python -m http.server 5173)",
+      "Bash(python -m pip install pillow)"
+    ]
+  }
+}

@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hunter × Hunter — Règles du JDR</title>
+<meta name="description" content="Compendium des règles du jeu de rôle Hunter × Hunter : caractéristiques, création de personnage, combat, équipement et maîtrise du Nen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
+</head>
+<body>
+
+<header class="topbar">
+  <!-- Header vide : le nav viendra ici. -->
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="layout">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="search-wrap">
+      <input type="search" id="navSearch" placeholder="Rechercher une règle…" aria-label="Rechercher une règle">
+    </div>
+    <nav class="nav" id="nav">
+
+      <p class="nav-group">Les bases</p>
+      <a href="#intro" class="nav-link">Introduction</a>
+      <a href="#caracteristiques" class="nav-link">Les caractéristiques</a>
+      <a href="#competences" class="nav-link">Les compétences</a>
+      <a href="#specialisations" class="nav-link">Les spécialisations</a>
+      <a href="#des" class="nav-link">Les lancers de dés</a>
+
+      <p class="nav-group">Le personnage</p>
+      <a href="#creation" class="nav-link">Création de personnage</a>
+      <a href="#avantages" class="nav-link">Les avantages</a>
+
+      <p class="nav-group">Le combat</p>
+      <a href="#combat" class="nav-link">Système de combat</a>
+      <a href="#manoeuvres" class="nav-link">Manœuvres de combat</a>
+      <a href="#etats" class="nav-link">Les états</a>
+      <a href="#situations" class="nav-link">Situations de combat</a>
+
+      <p class="nav-group">L'équipement</p>
+      <a href="#armes" class="nav-link">Les armes</a>
+      <a href="#armures" class="nav-link">Armures &amp; boucliers</a>
+
+      <p class="nav-group">Le Nen</p>
+      <a href="#nen" class="nav-link">Principes du Nen</a>
+      <a href="#aap" class="nav-link">L'A.A.P.</a>
+      <a href="#ten" class="nav-link">Ten <span class="kanji">纏</span></a>
+      <a href="#zetsu" class="nav-link">Zetsu <span class="kanji">絶</span></a>
+      <a href="#ren" class="nav-link">Ren <span class="kanji">練</span></a>
+      <a href="#hatsu" class="nav-link">Hatsu <span class="kanji">発</span></a>
+      <a href="#gyo" class="nav-link">Gyo <span class="kanji">凝</span></a>
+      <a href="#shu" class="nav-link">Shu <span class="kanji">周</span></a>
+      <a href="#ken" class="nav-link">Ken <span class="kanji">堅</span></a>
+      <a href="#ko" class="nav-link">Ko <span class="kanji">硬</span></a>
+      <a href="#in" class="nav-link">In <span class="kanji">隠</span></a>
+      <a href="#ryu" class="nav-link">Ryu <span class="kanji">流</span></a>
+      <a href="#zetsu-actif" class="nav-link">Zetsu actif</a>
+
+    </nav>
+    <p class="sidebar-foot">Compendium non officiel — usage privé de table.</p>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <!-- ============ CONTENU ============ -->
+  <main class="content" id="content">
+
+    <!-- ---------- INTRO ---------- -->
+    <article class="page" id="intro">
+      <div class="hero">
+        <h1>Hunter <span class="x">×</span> Hunter</h1>
+      </div>
+
+      <div class="card-grid">
+        <a class="tile" href="#creation">
+          <span class="tile-num">01</span>
+          <h3>Créer son personnage</h3>
+          <p>Caractéristiques primaire, secondaires et négative, avantages et répartition de l'XP.</p>
+        </a>
+        <a class="tile" href="#des">
+          <span class="tile-num">02</span>
+          <h3>Résoudre une action</h3>
+          <p>2d10 + bonus, doublons explosifs et enchaînements de coups critiques.</p>
+        </a>
+        <a class="tile" href="#combat">
+          <span class="tile-num">03</span>
+          <h3>Se battre</h3>
+          <p>Marges de réussite, manœuvres, états et situations tactiques.</p>
+        </a>
+        <a class="tile" href="#nen">
+          <span class="tile-num">04</span>
+          <h3>Maîtriser le Nen</h3>
+          <p>Ten, Zetsu, Ren, Hatsu et les six variantes avancées.</p>
+        </a>
+      </div>
+
+      <h2>Les trois piliers du système</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <h4>Les caractéristiques</h4>
+          <p>Neuf valeurs plafonnées à <strong>10</strong>. Elles définissent le potentiel brut du personnage&nbsp;: le maximum atteignable sur un jet est <strong>CARAC × 10</strong>.</p>
+          <a href="#caracteristiques" class="inline-link">Voir les caractéristiques →</a>
+        </div>
+        <div class="pillar">
+          <h4>Les compétences</h4>
+          <p>Huit domaines d'action. Une compétence maîtrisée ne monte qu'à la moitié de son maximum&nbsp;; les <strong>spécialités</strong> débloquent le reste.</p>
+          <a href="#competences" class="inline-link">Voir les compétences →</a>
+        </div>
+        <div class="pillar">
+          <h4>Le Nen</h4>
+          <p>Un arbre d'apprentissage payé en XP. Chaque branche débloquée ouvre de nouvelles variantes et affine la maîtrise de l'aura.</p>
+          <a href="#nen" class="inline-link">Voir le Nen →</a>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Prestige de départ&nbsp;: 4.</strong> Le prestige sert de référence à plusieurs plafonds&nbsp;:
+        la caractéristique primaire peut monter jusqu'à <em>PRESTIGE&nbsp;+&nbsp;1</em>, la caractéristique négative
+        est bloquée à <em>PRESTIGE&nbsp;−&nbsp;1</em>.
+      </div>
+    </article>
+
+    <!-- ---------- CARACTERISTIQUES ---------- -->
+    <article class="page" id="caracteristiques">
+      <p class="eyebrow">Les bases</p>
+      <h1>Les caractéristiques</h1>
+      <p class="lede">
+        Jusqu'à un maximum de <strong>10</strong>, les caractéristiques représentent ce que ton personnage
+        peut atteindre lors des jets de compétences. Le maximum que tu peux atteindre est
+        <strong>CARAC × 10</strong>.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat"><span class="stat-abbr">FOR</span><span class="stat-name">Force</span></div>
+        <div class="stat"><span class="stat-abbr">CON</span><span class="stat-name">Constitution</span></div>
+        <div class="stat"><span class="stat-abbr">DEX</span><span class="stat-name">Dextérité</span></div>
+        <div class="stat"><span class="stat-abbr">AGI</span><span class="stat-name">Agilité</span></div>
+        <div class="stat"><span class="stat-abbr">PRE</span><span class="stat-name">Présence</span></div>
+        <div class="stat"><span class="stat-abbr">INT</span><span class="stat-name">Intelligence</span></div>
+        <div class="stat"><span class="stat-abbr">PER</span><span class="stat-name">Perception</span></div>
+        <div class="stat"><span class="stat-abbr">DET</span><span class="stat-name">Détermination</span></div>
+        <div class="stat is-nen"><span class="stat-abbr">NEN</span><span class="stat-name">Nen</span></div>
+      </div>
+
+      <div class="formula">
+        <span class="formula-label">Plafond de jet</span>
+        <span class="formula-body">Maximum atteignable = CARAC × 10</span>
+      </div>
+
+      <div class="note">
+        <strong>NEN à part.</strong> La caractéristique NEN ne peut jamais être choisie comme caractéristique
+        primaire, secondaire ou négative lors de la création du personnage.
+      </div>
+    </article>
+
+    <!-- ---------- COMPETENCES ---------- -->
+    <article class="page" id="competences">
+      <p class="eyebrow">Les bases</p>
+      <h1>Les compétences</h1>
+      <p class="lede">
+        Tu ne peux avoir que la <strong>moitié de ton maximum</strong> dans une compétence que tu maîtrises.
+        Si tu veux monter plus haut, tu peux obtenir l'autre moitié manquante avec des <strong>spécialités</strong>.
+      </p>
+
+      <div class="stat-grid cols-4">
+        <div class="stat"><span class="stat-name big">Physique</span></div>
+        <div class="stat"><span class="stat-name big">Volonté</span></div>
+        <div class="stat"><span class="stat-name big">Social</span></div>
+        <div class="stat"><span class="stat-name big">Intellect</span></div>
+        <div class="stat"><span class="stat-name big">Perception</span></div>
+        <div class="stat"><span class="stat-name big">Création</span></div>
+        <div class="stat"><span class="stat-name big">Clandestines</span></div>
+        <div class="stat"><span class="stat-name big">Combats</span></div>
+      </div>
+
+      <div class="formula">
+        <span class="formula-label">Compétence maîtrisée</span>
+        <span class="formula-body">Score max sans spécialité = (CARAC × 10) ÷ 2</span>
+      </div>
+
+      <div class="note">
+        <strong>Les spécialisations.</strong> Elles comblent l'autre moitié du plafond. Elles s'achètent
+        très efficacement à la création&nbsp;: <em>1&nbsp;XP&nbsp;=&nbsp;2&nbsp;points de spécialisation</em>.
+        <a href="#specialisations" class="inline-link">Voir le détail →</a>
+      </div>
+    </article>
+
+    <!-- ---------- SPECIALISATIONS ---------- -->
+    <article class="page" id="specialisations">
+      <p class="eyebrow">Les bases</p>
+      <h1>Les spécialisations</h1>
+      <p class="lede">
+        Une spécialisation est un domaine précis à l'intérieur d'une compétence. Elle représente ce que ton
+        personnage a réellement pratiqué, et c'est par elle que tu franchis le plafond de la compétence.
+      </p>
+
+      <h2>Le principe</h2>
+      <ol class="steps">
+        <li>
+          <h4>La compétence plafonne à la moitié</h4>
+          <p>Même parfaitement maîtrisée, une compétence ne monte qu'à la moitié de ton maximum,
+          soit <span class="mono">(CARAC × 10) ÷ 2</span>. C'est ton socle général&nbsp;: il s'applique
+          à toutes les situations couvertes par la compétence.</p>
+        </li>
+        <li>
+          <h4>La spécialisation débloque l'autre moitié</h4>
+          <p>Les points de spécialisation viennent s'ajouter par-dessus ce socle, mais
+          <strong>uniquement dans leur domaine</strong>. Un personnage peut donc être médiocre en
+          Combats de manière générale, et redoutable dès qu'il a une dague en main.</p>
+        </li>
+        <li>
+          <h4>Le total ne dépasse jamais le plafond de la caractéristique</h4>
+          <p>Socle + spécialisation reste borné par <span class="mono">CARAC × 10</span>.</p>
+        </li>
+      </ol>
+
+      <div class="formula stack">
+        <span class="formula-label">Jet dans le domaine d'une spécialisation</span>
+        <span class="formula-body">Compétence + Spécialisation  (max. CARAC × 10)</span>
+      </div>
+      <div class="formula stack">
+        <span class="formula-label">Coût à la création</span>
+        <span class="formula-body">1 XP = 2 points de spécialisation</span>
+      </div>
+
+      <h2>La liste des spécialisations</h2>
+      <div class="note warn">
+        <strong>À valider.</strong> Le document de règles ne fixe pas de liste&nbsp;: ce tableau est une
+        proposition de départ. Dis-moi ce que tu veux ajouter, retirer ou renommer.
+      </div>
+
+      <div class="table-wrap">
+        <table class="specs">
+          <thead>
+            <tr><th>Compétence</th><th>Carac.</th><th>Spécialisations</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="spec-comp">Physique</td>
+              <td class="spec-carac">FOR · CON · AGI</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Athlétisme</span><span class="spec-chip">Course</span><span class="spec-chip">Saut</span><span class="spec-chip">Escalade</span><span class="spec-chip">Natation</span><span class="spec-chip">Acrobatie</span><span class="spec-chip">Endurance</span><span class="spec-chip">Force brute</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Volonté</td>
+              <td class="spec-carac">DET · CON</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Résistance à la douleur</span><span class="spec-chip">Sang-froid</span><span class="spec-chip">Concentration</span><span class="spec-chip">Résistance mentale</span><span class="spec-chip">Résistance à la peur</span><span class="spec-chip">Privation</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Social</td>
+              <td class="spec-carac">PRE · INT</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Persuasion</span><span class="spec-chip">Intimidation</span><span class="spec-chip">Tromperie</span><span class="spec-chip">Marchandage</span><span class="spec-chip">Commandement</span><span class="spec-chip">Étiquette</span><span class="spec-chip">Réseau</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Intellect</td>
+              <td class="spec-carac">INT</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Enquête</span><span class="spec-chip">Stratégie</span><span class="spec-chip">Médecine</span><span class="spec-chip">Histoire du monde</span><span class="spec-chip">Faune &amp; flore</span><span class="spec-chip">Ingénierie</span><span class="spec-chip">Langues</span><span class="spec-chip">Jeux &amp; paris</span><span class="spec-chip">Théorie du Nen</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Perception</td>
+              <td class="spec-carac">PER</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Vigilance</span><span class="spec-chip">Vue</span><span class="spec-chip">Ouïe</span><span class="spec-chip">Odorat</span><span class="spec-chip">Pistage</span><span class="spec-chip">Détection du mensonge</span><span class="spec-chip">Ressentir le Nen</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Création</td>
+              <td class="spec-carac">INT · DEX</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Artisanat</span><span class="spec-chip">Forge</span><span class="spec-chip">Pièges</span><span class="spec-chip">Chimie &amp; poisons</span><span class="spec-chip">Cuisine</span><span class="spec-chip">Musique</span><span class="spec-chip">Dessin</span><span class="spec-chip">Écriture</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Clandestines</td>
+              <td class="spec-carac">DEX · AGI · PER</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Discrétion</span><span class="spec-chip">Crochetage</span><span class="spec-chip">Vol à la tire</span><span class="spec-chip">Déguisement</span><span class="spec-chip">Filature</span><span class="spec-chip">Contrefaçon</span><span class="spec-chip">Évasion</span>
+              </span></td>
+            </tr>
+            <tr>
+              <td class="spec-comp">Combats</td>
+              <td class="spec-carac">FOR · DEX · AGI</td>
+              <td><span class="spec-list">
+                <span class="spec-chip">Épées</span><span class="spec-chip">Dagues</span><span class="spec-chip">Armes d'hast</span><span class="spec-chip">Armes contondantes</span><span class="spec-chip">Armes à distance</span><span class="spec-chip">Mains nues</span><span class="spec-chip">Lutte</span><span class="spec-chip">Boucliers</span>
+              </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        Les spécialisations de <strong>Combats</strong> reprennent les familles d'armes du chapitre
+        <a href="#armes" class="inline-link">Les armes</a>, ce qui rend l'avantage
+        <em>Virtuose martial des dagues</em> directement lisible.
+      </div>
+    </article>
+
+    <!-- ---------- DES ---------- -->
+    <article class="page" id="des">
+      <p class="eyebrow">Les bases</p>
+      <h1>Les lancers de dés</h1>
+      <p class="lede">
+        Lorsque tu lances les dés, tu lances <strong>deux dés 10</strong> et tu ajoutes la somme à tes bonus.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h4>Le doublon déclenche un critique</h4>
+          <p>Si tu lances un doublon, tu effectues un <strong>coup critique</strong>. La valeur du coup critique
+          devient automatiquement <strong>20</strong>, puis tu relances un autre dé et tu l'ajoutes à ce 20.</p>
+        </li>
+        <li>
+          <h4>Le triplé enchaîne</h4>
+          <p>Si tu obtiens un <strong>triplé</strong> (le même résultat que tes dés précédents), tu enchaînes
+          avec un nouveau coup critique, ce qui ajoute <strong>+10</strong> à ton résultat.</p>
+        </li>
+        <li>
+          <h4>Jusqu'à la rupture</h4>
+          <p>Ce processus s'arrête dès que tu n'obtiens plus le même résultat.</p>
+        </li>
+      </ol>
+
+      <div class="formula">
+        <span class="formula-label">Jet standard</span>
+        <span class="formula-body">2d10 + bonus</span>
+      </div>
+
+    </article>
+
+    <!-- ---------- CREATION ---------- -->
+    <article class="page" id="creation">
+      <p class="eyebrow">Le personnage</p>
+      <h1>La création de personnage</h1>
+      <p class="lede">Cinq étapes, dans l'ordre, pour donner naissance à un Hunter.</p>
+
+      <ol class="steps numbered">
+        <li>
+          <h4>Choisir ses caractéristiques directrices</h4>
+          <p>Tu choisis une <strong>caractéristique primaire</strong> (pas NEN) et <strong>deux caractéristiques
+          secondaires</strong> (pas NEN non plus). Celles-ci te permettent d'augmenter ta caractéristique
+          naturellement avec de l'EXP. La caractéristique primaire peut être à <strong>PRESTIGE&nbsp;+&nbsp;1</strong>.</p>
+        </li>
+        <li>
+          <h4>Choisir sa caractéristique négative</h4>
+          <p>Tu choisis aussi une <strong>caractéristique négative</strong> (pas NEN)&nbsp;: celle-ci aura beaucoup
+          de difficulté à augmenter. Elle est au maximum à <strong>PRESTIGE&nbsp;−&nbsp;1</strong>.</p>
+        </li>
+        <li>
+          <h4>Choisir ses avantages</h4>
+          <p>Voir <a href="#avantages" class="inline-link">la liste des avantages</a>.</p>
+        </li>
+        <li>
+          <h4>Lancer ses dés de caractéristiques</h4>
+          <p>Tu lances <strong>1d4&nbsp;−&nbsp;1</strong> par caractéristique.</p>
+        </li>
+        <li>
+          <h4>Répartir l'XP</h4>
+          <p>Tu disposes de <strong>150 XP</strong> au maximum, pour un <strong>prestige de départ de 4</strong>.
+          Les conversions sont fixes, voir le tableau ci-dessous.</p>
+        </li>
+      </ol>
+
+      <h2>Le change d'XP</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Coût</th><th>Achat</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1 XP</td><td>1 point de compétence</td></tr>
+            <tr><td class="mono">20 XP</td><td>1 point de caractéristique</td></tr>
+            <tr><td class="mono">1 XP</td><td>2 points de spécialisation</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ---------- AVANTAGES ---------- -->
+    <article class="page" id="avantages">
+      <p class="eyebrow">Le personnage</p>
+      <h1>La liste des avantages</h1>
+      <p class="lede">Les avantages sont classés par niveau de puissance. Les entrées marquées d'un
+        <strong>*</strong> peuvent être prises à un niveau supérieur.</p>
+
+      <div class="note warn">
+        <strong>Interdit à la création.</strong> Aucun avantage portant sur la prédisposition au Nen ne peut
+        être choisi&nbsp;: ton personnage possède déjà des prédispositions très avancées par nature.
+      </div>
+
+      <h2><span class="rank">Niveau 1</span></h2>
+      <ul class="feat-list">
+        <li><strong>Surdoué</strong> — +1 caractéristique primaire et +1 caractéristique secondaire.</li>
+        <li><strong>Richesse</strong><span class="star">*</span></li>
+        <li><strong>Célébrité</strong><span class="star">*</span></li>
+        <li><strong>Descendant d'une famille puissante / reconnue</strong><span class="star">*</span></li>
+        <li><strong>Tuteur</strong><span class="star">*</span></li>
+        <li><strong>Connaissance</strong><span class="star">*</span></li>
+        <li><strong>Choix du Hatsu</strong> — sauf Spécialisation.</li>
+        <li><strong>Robuste</strong> — augmente les PDV de ton perso en fonction de son prestige.</li>
+        <li><strong>Ambidextre</strong> — peut utiliser deux armes légères sans malus dans un seul tour.</li>
+        <li><strong>Bourrin</strong> — augmente les dégâts avec les armes qui utilisent la FOR.</li>
+        <li><strong>Contre-attaque</strong> — en position défensive, une fois par tour, tu peux attaquer après
+          avoir paré ou esquivé, et gagner un bonus égal à la différence entre les deux jets.</li>
+      </ul>
+
+      <h2><span class="rank">Niveau 2</span></h2>
+      <ul class="feat-list">
+        <li><strong>Apprentissage des bases du Nen</strong></li>
+        <li><strong>Surdoué+</strong> — +2 caractéristique primaire, +2 caractéristique secondaire et
+          enlève la caractéristique négative.</li>
+        <li><strong>Créature de compagnie</strong><span class="star">*</span></li>
+        <li><strong>Nen lourd</strong></li>
+        <li><strong>Ami de la forêt</strong></li>
+      </ul>
+
+      <h2><span class="rank">Niveau 3</span></h2>
+      <ul class="feat-list">
+        <li><strong>Choix du Hatsu</strong> — seulement Spécialisation.</li>
+        <li><strong>Robustesse légendaire</strong></li>
+        <li><strong>Surdoué+++</strong> — +6 caractéristique primaire et enlève la caractéristique négative.</li>
+        <li><strong>Apprentissage avancé du Nen</strong></li>
+        <li><strong>Virtuose martial des dagues</strong></li>
+      </ul>
+
+      <p class="footnote"><span class="star">*</span> Cet avantage peut être de niveau supérieur.</p>
+    </article>
+
+    <!-- ---------- COMBAT ---------- -->
+    <article class="page" id="combat">
+      <p class="eyebrow">Le combat</p>
+      <h1>Le système de combat</h1>
+      <p class="lede">
+        L'attaque se résout par un jet de compétence. La <strong>marge</strong> obtenue détermine la
+        proportion de dégâts que la parade laisse passer.
+      </p>
+
+      <h2>L'attaque</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Résultat du jet</th><th>Effet sur la PRD</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1 à 9</td><td>PRD = <strong>50&nbsp;%</strong> des DGTS</td></tr>
+            <tr><td class="mono">10 à 19</td><td>PRD = <strong>100&nbsp;%</strong> des DGTS</td></tr>
+            <tr><td class="mono">20 et +</td><td>PRD = <strong>200&nbsp;%</strong> des DGTS</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Le lexique du combat</h2>
+      <dl class="glossary">
+        <dt>ATK / ATT</dt><dd>Jet d'attaque.</dd>
+        <dt>PRD</dt><dd>Parade.</dd>
+        <dt>ESQ</dt><dd>Esquive.</dd>
+        <dt>DGTS</dt><dd>Dégâts.</dd>
+        <dt>INI</dt><dd>Initiative.</dd>
+        <dt>INVU</dt><dd>Invulnérabilité — l'encaissement brut.</dd>
+        <dt>DEF</dt><dd>Défense de l'armure.</dd>
+        <dt>PA / PC / PO</dt><dd>Prix en argent / en centimes / en or.</dd>
+      </dl>
+
+      <div class="note">
+        Consulte aussi <a href="#manoeuvres" class="inline-link">les manœuvres de combat</a>,
+        <a href="#etats" class="inline-link">les états</a> et
+        <a href="#situations" class="inline-link">les situations de combat</a>.
+      </div>
+    </article>
+
+    <!-- ---------- MANOEUVRES ---------- -->
+    <article class="page" id="manoeuvres">
+      <p class="eyebrow">Le combat</p>
+      <h1>Les manœuvres de combat</h1>
+      <p class="lede">Toutes les manœuvres nécessitent une <strong>action</strong>, sauf mention contraire.</p>
+
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Frappe visée</h4>
+          <p>Vise les zones où l'adversaire ne porte pas d'armure. Tu obtiens un malus égal à la défense de l'armure.</p>
+        </div>
+        <div class="man">
+          <h4>Désarmer</h4>
+          <p>Au lieu d'attaquer l'adversaire, tu décides de le désarmer. C'est un succès si tu réussis un jet d'attaque avec un <strong>malus de 10</strong> contre sa parade ou son esquive.</p>
+        </div>
+        <div class="man">
+          <h4>Frappe rapide <span class="tag free">Sans action</span></h4>
+          <p>Si tu possèdes une arme légère dans chaque main, tu peux attaquer avec les deux armes lors de la même action d'attaque. Ta main faible obtient un malus de <strong>10</strong>.</p>
+        </div>
+        <div class="man">
+          <h4>Posture défensive totale</h4>
+          <p>Tu consacres ton tour entièrement à la défense et tu obtiens un bonus de <strong>+10</strong> à tes jets de défense jusqu'à ton prochain tour.</p>
+        </div>
+        <div class="man">
+          <h4>Contre-attaque</h4>
+          <p>Tu te prépares à contre-attaquer&nbsp;: bonus de défense de <strong>+5</strong> pour la prochaine attaque que tu subis. Si tu réussis la parade, tu peux attaquer.</p>
+        </div>
+        <div class="man">
+          <h4>Contre-attaque suicidaire</h4>
+          <p>Tu décides de prendre <strong>100&nbsp;%</strong> des dégâts de la prochaine attaque que tu subis et de gagner un bonus de <strong>+10</strong> pour ta contre-attaque.</p>
+        </div>
+        <div class="man">
+          <h4>Renversement</h4>
+          <p>Malus de <strong>5</strong> sur le jet d'ATK (ou de Physique) pour essayer de le faire tomber par terre.</p>
+        </div>
+        <div class="man">
+          <h4>Aveuglement</h4>
+          <p>Tu utilises ton environnement ou un objet pour aveugler ton adversaire. C'est un succès si tu réussis un jet d'attaque avec un <strong>malus de 10</strong> contre sa parade.</p>
+        </div>
+        <div class="man">
+          <h4>Pousser</h4>
+          <p>Si tu réussis ton jet de Physique, tu pousses ton adversaire d'un nombre de mètres égal à ta <strong>FOR</strong>.</p>
+        </div>
+        <div class="man">
+          <h4>Étranglement</h4>
+          <p>Si tu réussis un jet de grapple avec un malus de <strong>10</strong>, la cible est agrippée et commence à suffoquer.</p>
+        </div>
+        <div class="man">
+          <h4>Prise immobilisante</h4>
+          <p>Si tu réussis un jet de grapple avec un malus de <strong>10</strong>, la cible est entravée et obtient un malus de <strong>10</strong> pour se défendre.</p>
+        </div>
+        <div class="man">
+          <h4>Attaque combinée</h4>
+          <p>Nécessite que deux personnages prennent l'action. Ils attaquent en même temps, au tour de la plus faible initiative. L'un effectue son ATK avec un malus de <strong>10</strong>, l'autre gagne un bonus de <strong>+5</strong>.</p>
+        </div>
+        <div class="man">
+          <h4>Déviation</h4>
+          <p>Si deux adversaires sont à ton corps-à-corps, tu peux te préparer à dévier une attaque&nbsp;: malus de <strong>10</strong> à la PRD. Si tu réussis la PRD, tu dévies l'attaque vers le second adversaire.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- ETATS ---------- -->
+    <article class="page" id="etats">
+      <p class="eyebrow">Le combat</p>
+      <h1>Les états</h1>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>État</th><th>Effet</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Aveuglé</strong></td><td>Malus de 10.</td></tr>
+            <tr><td><strong>À terre</strong></td><td>Bonus de 5 pour les assaillants.</td></tr>
+            <tr><td><strong>Agrippé</strong></td><td>Le mouvement est égal à 0.</td></tr>
+            <tr><td><strong>Suffocation</strong></td><td>Malus de 5 par tour, puis perte de connaissance au bout de <span class="mono">CON&nbsp;+&nbsp;2</span> tours et mort au bout de <span class="mono">CON&nbsp;+&nbsp;4</span> tours.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ---------- SITUATIONS ---------- -->
+    <article class="page" id="situations">
+      <p class="eyebrow">Le combat</p>
+      <h1>Les situations de combat</h1>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situation</th><th>Modificateur</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Prise en tenaille</strong></td><td class="pos">Bonus +5</td></tr>
+            <tr><td><strong>Le highground</strong></td><td class="pos">Bonus +5</td></tr>
+            <tr><td><strong>Attaquer alors que tu es caché</strong></td><td class="pos">Bonus +10</td></tr>
+            <tr><td><strong>Dos à un obstacle</strong></td><td class="neg">Malus −5</td></tr>
+            <tr><td><strong>Surprise</strong></td><td>Les personnes surprises ne jouent pas le premier tour&nbsp;; elles peuvent réagir.</td></tr>
+            <tr><td><strong>Prise de vitesse</strong></td><td>Une créature est prise de vitesse si son INI est inférieure de 15 à la tienne. Elle entreprend alors son action avant la tienne.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ---------- ARMES ---------- -->
+    <article class="page" id="armes">
+      <p class="eyebrow">L'équipement</p>
+      <h1>Les armes</h1>
+      <p class="lede">Les valeurs entre parenthèses s'appliquent lorsque l'arme est maniée à deux mains.</p>
+
+      <h2>Les épées</h2>
+      <div class="table-wrap">
+        <table class="weapons">
+          <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Longue</td><td class="mono">10 (12)</td><td class="mono">−4 (−2)</td><td>FOR</td><td>Polyvalent</td><td class="mono">20</td></tr>
+            <tr><td>Bâtarde</td><td class="mono">8 (10)</td><td class="mono">−3 (−1)</td><td>FOR</td><td>Polyvalent, Défensif</td><td class="mono">50</td></tr>
+            <tr><td>Espadon</td><td class="mono">15</td><td class="mono">−5</td><td>FOR</td><td>Grande, Allonge, 2M</td><td class="mono">40</td></tr>
+            <tr><td>Claymore</td><td class="mono">12</td><td class="mono">−5</td><td>FOR</td><td>Allonge, 2M</td><td class="mono">30</td></tr>
+            <tr><td>Courte</td><td class="mono">6</td><td class="mono">−1</td><td>DEX</td><td>Légère</td><td class="mono">10</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les dagues</h2>
+      <div class="table-wrap">
+        <table class="weapons">
+          <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PC</th></tr></thead>
+          <tbody>
+            <tr><td>Dague</td><td class="mono">4</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Coupe-gorge</td><td class="mono">30</td></tr>
+            <tr><td>Dague de parade</td><td class="mono">2</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Défensif</td><td class="mono">20</td></tr>
+            <tr><td>Miséricorde</td><td class="mono">4</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Brise-armure</td><td class="mono">50</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les armes d'hast</h2>
+      <div class="table-wrap">
+        <table class="weapons">
+          <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Hallebarde</td><td class="mono">12</td><td class="mono">−5</td><td>FOR</td><td>Allonge, Grande, Crocheter, 2M</td><td class="mono">40</td></tr>
+            <tr><td>Lance</td><td class="mono">12</td><td class="mono">−5</td><td>FOR</td><td>Allonge, Grande, Charger, 2M</td><td class="mono">40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les armes contondantes</h2>
+      <div class="table-wrap">
+        <table class="weapons">
+          <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Masse</td><td class="mono">8 (10)</td><td class="mono">−3 (−1)</td><td>FOR</td><td>Brise-armure, Polyvalent</td><td class="mono">20</td></tr>
+            <tr><td>Fléau d'armes</td><td class="mono">8 (10)</td><td class="mono">−3 (−1)</td><td>FOR</td><td>Polyvalent, Anti-bouclier</td><td class="mono">50</td></tr>
+            <tr><td>Marteau de guerre</td><td class="mono">15</td><td class="mono">−5</td><td>FOR</td><td>2M, Brise-armure, Grande</td><td class="mono">40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les armes à distance</h2>
+      <div class="table-wrap">
+        <table class="weapons">
+          <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Arc court</td><td class="mono">6</td><td class="mono">−3</td><td>FOR/DEX</td><td>Portée (100/200), 2M</td><td class="mono">20</td></tr>
+            <tr><td>Arc long</td><td class="mono">8</td><td class="mono">−4</td><td>FOR</td><td>Portée (200/400), 2M</td><td class="mono">30</td></tr>
+            <tr><td>Arbalète</td><td class="mono">8</td><td class="mono">−5</td><td>DEX</td><td>Portée (100/200), 2M</td><td class="mono">40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les attributs d'armes</h2>
+      <dl class="glossary wide">
+        <dt>Polyvalent</dt><dd>Peut se porter à une main ou à deux mains.</dd>
+        <dt>Défensif</dt><dd>Cette arme donne un bonus de 5 à la PRD.</dd>
+        <dt>Grande</dt><dd>Cette arme vous donne un malus de 15 dans les espaces confinés.</dd>
+        <dt>Allonge</dt><dd>Vous pouvez taper jusqu'à 3 mètres (2 cases).</dd>
+        <dt>Légère</dt><dd>Peut être utilisée dans votre main faible, si dans votre main forte vous avez une arme légère.</dd>
+        <dt>Coupe-gorge</dt><dd>Si cette arme attaque une zone sensible (malus de 10 à l'attaque), elle inflige le double des dégâts. Ne marche que sur ta main forte, sauf avec l'avantage Ambidextre.</dd>
+        <dt>Brise-armure</dt><dd>Ignore 5 points de l'encaissement de l'armure adverse. Ne marche que sur les armures en métal et en cuir.</dd>
+        <dt>Crocheter</dt><dd>Ne subit aucun malus pour désarmer et désarçonner son opposant.</dd>
+        <dt>Charger</dt><dd>Lorsque tu fonces, tu peux attaquer si tu te déplaces de plus de 9 mètres. Si une personne court dans ta direction (à portée de l'arme), tu peux utiliser ta réaction pour l'attaquer.</dd>
+        <dt>Anti-bouclier</dt><dd>Ignore les bonus du bouclier adverse.</dd>
+        <dt>Portée</dt><dd>(1) — aucun malus si la distance est inférieure. (2) — malus de 10 si inférieure. Au-delà, échec automatique.</dd>
+        <dt>2M</dt><dd>Arme à deux mains.</dd>
+      </dl>
+    </article>
+
+    <!-- ---------- ARMURES ---------- -->
+    <article class="page" id="armures">
+      <p class="eyebrow">L'équipement</p>
+      <h1>Les armures &amp; boucliers</h1>
+
+      <h2>Armures en cuir</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom de l'armure</th><th>INVU</th><th>DEF</th><th>INI</th><th>Prix</th></tr></thead>
+          <tbody>
+            <tr><td>Cuir</td><td class="mono">2</td><td class="mono">1</td><td class="mono">−1</td><td class="mono">50 PC</td></tr>
+            <tr><td>Cuir rembourré</td><td class="mono">4</td><td class="mono">2</td><td class="mono">−3</td><td class="mono">10 PA</td></tr>
+            <tr><td>Brigandine légère</td><td class="mono">6</td><td class="mono">3</td><td class="mono">−4</td><td class="mono">25 PA</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Armures en métal intermédiaire</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom de l'armure</th><th>INVU</th><th>DEF</th><th>INI</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Chemise de mailles</td><td class="mono">7</td><td class="mono">4</td><td class="mono">−5</td><td class="mono">50</td></tr>
+            <tr><td>Cuirasse</td><td class="mono">8</td><td class="mono">5</td><td class="mono">−6</td><td class="mono">75</td></tr>
+            <tr><td>Demi-plate</td><td class="mono">9</td><td class="mono">6</td><td class="mono">−7</td><td class="mono">90</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Armures en métal avancé</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom de l'armure</th><th>INVU</th><th>DEF</th><th>INI</th><th>PO</th></tr></thead>
+          <tbody>
+            <tr><td>Cotte de mailles</td><td class="mono">10</td><td class="mono">7</td><td class="mono">−8</td><td class="mono">1</td></tr>
+            <tr><td>Clibanion</td><td class="mono">12</td><td class="mono">8</td><td class="mono">−9</td><td class="mono">1,5</td></tr>
+            <tr><td>Harnois</td><td class="mono">15</td><td class="mono">10</td><td class="mono">−10</td><td class="mono">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Boucliers</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Bouclier</th><th>PRD</th><th>INI</th><th>Attribut</th><th>PA</th></tr></thead>
+          <tbody>
+            <tr><td>Écu</td><td class="mono">5</td><td class="mono">−3</td><td>—</td><td class="mono">10</td></tr>
+            <tr><td>Pavois</td><td class="mono">15</td><td class="mono">−5</td><td>Statique</td><td class="mono">30</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <dl class="glossary wide">
+        <dt>Statique</dt><dd>Tu peux utiliser ce bouclier seulement si ton opposant t'attaque de face.</dd>
+      </dl>
+    </article>
+
+    <!-- ---------- NEN ---------- -->
+    <article class="page" id="nen">
+      <p class="eyebrow">Le Nen</p>
+      <h1>Les principes du Nen</h1>
+      <p class="lede">
+        Chaque branche de Nen que vous allez débloquer (coût en XP) vous permettra d'avancer sur votre
+        apprentissage. Plus vous allez avancer sur l'arbre de Nen, plus vous serez capable de maîtriser
+        votre Nen.
+      </p>
+
+      <h2>Les quatre principes fondamentaux</h2>
+      <div class="nen-grid">
+        <a class="nen-card" href="#ten"><span class="nen-kanji">纏</span><h3>Ten</h3><p>Envelopper le corps de son aura pour se protéger.</p></a>
+        <a class="nen-card" href="#zetsu"><span class="nen-kanji">絶</span><h3>Zetsu</h3><p>Éteindre complètement son flux de Nen.</p></a>
+        <a class="nen-card" href="#ren"><span class="nen-kanji">練</span><h3>Ren</h3><p>Intensifier son aura pour amplifier ses actions.</p></a>
+        <a class="nen-card" href="#hatsu"><span class="nen-kanji">発</span><h3>Hatsu</h3><p>Exprimer son aura sous forme de techniques personnelles.</p></a>
+      </div>
+
+      <h2>Les variantes avancées</h2>
+      <div class="nen-grid">
+        <a class="nen-card sm" href="#gyo"><span class="nen-kanji">凝</span><h3>Gyo</h3><p>Voir et analyser l'aura.</p></a>
+        <a class="nen-card sm" href="#shu"><span class="nen-kanji">周</span><h3>Shu</h3><p>Étendre son aura à un objet.</p></a>
+        <a class="nen-card sm" href="#ken"><span class="nen-kanji">堅</span><h3>Ken</h3><p>Ten intensifié et durable.</p></a>
+        <a class="nen-card sm" href="#ko"><span class="nen-kanji">硬</span><h3>Ko</h3><p>Concentrer 100&nbsp;% de son aura en un point.</p></a>
+        <a class="nen-card sm" href="#in"><span class="nen-kanji">隠</span><h3>In</h3><p>Rendre son aura invisible.</p></a>
+        <a class="nen-card sm" href="#ryu"><span class="nen-kanji">流</span><h3>Ryu</h3><p>Répartir son aura en temps réel.</p></a>
+      </div>
+
+      <div class="note">
+        <strong>Ressource centrale&nbsp;: l'A.A.P.</strong> Toutes les variantes consomment de l'aura par tour.
+        <a href="#aap" class="inline-link">Consulter le tableau d'A.A.P. →</a>
+      </div>
+    </article>
+
+    <!-- ---------- AAP ---------- -->
+    <article class="page" id="aap">
+      <p class="eyebrow">Le Nen</p>
+      <h1>L'A.A.P.</h1>
+      <p class="lede">
+        L'A.A.P. est le nombre d'aura que tu peux utiliser <strong>par tour</strong>. Si la technique de Nen
+        que tu utilises dépasse ton total, alors tu ne pourras pas l'exécuter.
+      </p>
+
+      <h2>Le tableau d'apprentissage de l'A.A.P.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Niveau</th><th>Coût en XP</th><th>Total d'A.A.P.</th><th>XP cumulé</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono">0</td><td class="mono">5</td><td class="mono">0</td></tr>
+            <tr><td class="mono">1</td><td class="mono">20</td><td class="mono">10</td><td class="mono">20</td></tr>
+            <tr><td class="mono">2</td><td class="mono">20</td><td class="mono">15</td><td class="mono">40</td></tr>
+            <tr><td class="mono">3</td><td class="mono">20</td><td class="mono">20</td><td class="mono">60</td></tr>
+            <tr><td class="mono">4</td><td class="mono">20</td><td class="mono">25</td><td class="mono">80</td></tr>
+            <tr><td class="mono">5</td><td class="mono">20</td><td class="mono">30</td><td class="mono">100</td></tr>
+            <tr><td class="mono">6</td><td class="mono">20</td><td class="mono">35</td><td class="mono">120</td></tr>
+            <tr><td class="mono">7</td><td class="mono">20</td><td class="mono">40</td><td class="mono">140</td></tr>
+            <tr><td class="mono">8</td><td class="mono">20</td><td class="mono">45</td><td class="mono">160</td></tr>
+            <tr><td class="mono">9</td><td class="mono">20</td><td class="mono">50</td><td class="mono">180</td></tr>
+            <tr><td class="mono">10</td><td class="mono">20</td><td class="mono">55</td><td class="mono">200</td></tr>
+            <tr><td class="mono">11</td><td class="mono">20</td><td class="mono">60</td><td class="mono">220</td></tr>
+            <tr><td class="mono">12</td><td class="mono">20</td><td class="mono">65</td><td class="mono">240</td></tr>
+            <tr><td class="mono">13</td><td class="mono">20</td><td class="mono">70</td><td class="mono">260</td></tr>
+            <tr><td class="mono">14</td><td class="mono">20</td><td class="mono">75</td><td class="mono">280</td></tr>
+            <tr><td class="mono">15</td><td class="mono">20</td><td class="mono">80</td><td class="mono">300</td></tr>
+            <tr><td class="mono">16</td><td class="mono">20</td><td class="mono">85</td><td class="mono">320</td></tr>
+            <tr><td class="mono">17</td><td class="mono">20</td><td class="mono">90</td><td class="mono">340</td></tr>
+            <tr><td class="mono">18</td><td class="mono">20</td><td class="mono">95</td><td class="mono">360</td></tr>
+            <tr><td class="mono">19</td><td class="mono">20</td><td class="mono">100</td><td class="mono">380</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula">
+        <span class="formula-label">Progression</span>
+        <span class="formula-body">Chaque niveau coûte 20 XP et rapporte +5 d'A.A.P.</span>
+      </div>
+    </article>
+
+    <!-- ---------- TEN ---------- -->
+    <article class="page" id="ten">
+      <p class="eyebrow">Le Nen — Principe fondamental</p>
+      <h1><span class="title-kanji">纏</span> Le Ten</h1>
+      <p class="lede">
+        Tu peux utiliser ton Ten <strong>en réaction</strong> pour l'appliquer sur ton corps. Celui-ci te protège
+        des attaques physiques et de Nen jusqu'au début de ton prochain tour.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Ressentir son Nen <span class="step">(1)</span></td><td class="mono">10</td><td class="mono">0*</td></tr>
+            <tr><td>Ouverture du Ten <span class="step">(2)</span></td><td class="mono">20</td><td class="mono">(1)</td></tr>
+            <tr><td><strong>Maîtrise du Ten</strong></td><td class="mono">30</td><td class="mono">(2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">* Introduction au Nen avec un tuteur ou seul.</p>
+
+      <h2>Tableau de peaufinage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Niveau</th><th>Coût en XP</th><th>Encaissement</th><th>Déblocage</th><th>Coût en A.A.P.</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono">0</td><td class="mono">NEN − 2 (min. 1)</td><td>—</td><td class="mono">5</td></tr>
+            <tr><td class="mono">1</td><td class="mono">25</td><td class="mono">NEN − 1 (min. 1)</td><td><a href="#shu" class="inline-link">Shu</a></td><td class="mono">5</td></tr>
+            <tr><td class="mono">2</td><td class="mono">25</td><td class="mono">NEN</td><td><a href="#ken" class="inline-link">Ken</a>, <a href="#ryu" class="inline-link">Ryu</a>, <a href="#in" class="inline-link">In</a>, <a href="#ko" class="inline-link">Ko</a></td><td class="mono">5</td></tr>
+            <tr><td class="mono">3</td><td class="mono">25</td><td class="mono">NEN + 1</td><td>—</td><td class="mono">5</td></tr>
+            <tr><td class="mono">4</td><td class="mono">35</td><td class="mono">NEN + 3</td><td>—</td><td class="mono">5</td></tr>
+            <tr><td class="mono">5</td><td class="mono">50</td><td class="mono">NEN + 6</td><td>En</td><td class="mono">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        Pour augmenter ce tableau, il faut avoir la <strong>Maîtrise du Ten</strong>.
+      </div>
+    </article>
+
+    <!-- ---------- ZETSU ---------- -->
+    <article class="page" id="zetsu">
+      <p class="eyebrow">Le Nen — Principe fondamental</p>
+      <h1><span class="title-kanji">絶</span> Le Zetsu</h1>
+      <p class="lede">
+        En <strong>action gratuite</strong>, tu peux décider d'activer ton Zetsu et de ne plus émettre de Nen.
+        Lorsque tu utilises du Zetsu, tu ne peux plus utiliser de Nen jusqu'au début de ton prochain tour.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Vider son esprit <span class="step">(1)</span></td><td class="mono">10</td><td>Maîtrise du Ten</td></tr>
+            <tr><td>Empêcher le flux du Nen <span class="step">(2)</span></td><td class="mono">20</td><td class="mono">(1)</td></tr>
+            <tr><td><strong>Maîtrise du Zetsu</strong></td><td class="mono">30</td><td class="mono">(2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Tableau de peaufinage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Niveau</th><th>Coût en XP</th><th>Effet</th><th>Déblocage</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1</td><td class="mono">0</td><td>Faire disparaître son Nen</td><td>—</td></tr>
+            <tr><td class="mono">2</td><td class="mono">20</td><td>—</td><td><a href="#ko" class="inline-link">Ko</a></td></tr>
+            <tr><td class="mono">3</td><td class="mono">20</td><td>—</td><td><a href="#in" class="inline-link">In</a></td></tr>
+            <tr><td class="mono">4</td><td class="mono">20</td><td>—</td><td><a href="#zetsu-actif" class="inline-link">Zetsu actif</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ---------- REN ---------- -->
+    <article class="page" id="ren">
+      <p class="eyebrow">Le Nen — Principe fondamental</p>
+      <h1><span class="title-kanji">練</span> Le Ren</h1>
+      <p class="lede">
+        Lorsque tu utilises le Ren dans une action (ou réaction) de Nen, cette action se trouve
+        <strong>intensifiée par ton Ren</strong>. Cela ne dure que pour l'action ou la réaction que tu effectues.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Intensifier ses flux <span class="step">(1)</span></td><td class="mono">10</td><td>Maîtrise du Ten</td></tr>
+            <tr><td>Contrôle de l'intensité <span class="step">(2)</span></td><td class="mono">20</td><td class="mono">(1)</td></tr>
+            <tr><td><strong>Maîtrise du Ren</strong></td><td class="mono">30</td><td class="mono">(2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Tableau de peaufinage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Niveau</th><th>Coût en XP</th><th>Multiplicateur</th><th>Déblocage</th><th>Coût en A.A.P.</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono">0</td><td class="mono">0,5</td><td>—</td><td class="mono">15</td></tr>
+            <tr><td class="mono">1</td><td class="mono">20</td><td class="mono">0,6</td><td><a href="#gyo" class="inline-link">Gyo</a>, <a href="#shu" class="inline-link">Shu</a></td><td class="mono">15</td></tr>
+            <tr><td class="mono">2</td><td class="mono">20</td><td class="mono">0,7</td><td><a href="#ken" class="inline-link">Ken</a>, <a href="#ryu" class="inline-link">Ryu</a>, <a href="#ko" class="inline-link">Ko</a></td><td class="mono">15</td></tr>
+            <tr><td class="mono">3</td><td class="mono">20</td><td class="mono">0,8</td><td>—</td><td class="mono">15</td></tr>
+            <tr><td class="mono">4</td><td class="mono">20</td><td class="mono">0,9</td><td>—</td><td class="mono">15</td></tr>
+            <tr><td class="mono">5</td><td class="mono">40</td><td class="mono">1</td><td>En</td><td class="mono">15</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">Le niveau 5 exige une condition supplémentaire&nbsp;: <span class="mono">NEN = 7</span>.</p>
+    </article>
+
+    <!-- ---------- HATSU ---------- -->
+    <article class="page" id="hatsu">
+      <p class="eyebrow">Le Nen — Principe fondamental</p>
+      <h1><span class="title-kanji">発</span> Le Hatsu</h1>
+      <p class="lede">
+        Le Hatsu fonctionne avec des <strong>passifs</strong> et des <strong>techniques</strong> que tu proposes
+        au MJ. Toute nouvelle technique ou passif coûte <strong>20&nbsp;XP</strong>. Ce qui le rendra plus fort,
+        c'est la manière dont tu l'utilises, le coût en A.A.P. et la condition que tu y places.
+      </p>
+
+      <h2>Tableau d'apprentissage <span class="h2-sub">(par branche)</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Connaître son domaine <span class="step">(1)</span></td><td class="mono">10</td><td>Maîtrise du Ten</td></tr>
+            <tr><td>Contrôle de l'intensité <span class="step">(2)</span></td><td class="mono">20</td><td class="mono">(1)</td></tr>
+            <tr><td><strong>Maîtrise du Hatsu</strong></td><td class="mono">30</td><td class="mono">(2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Les formules du Hatsu</h2>
+      <div class="formula stack">
+        <span class="formula-label">Multiplicateur technique</span>
+        <span class="formula-body">Multiplicateur du Hatsu + Condition Hatsu</span>
+      </div>
+      <div class="formula stack">
+        <span class="formula-label">Technique de STATS</span>
+        <span class="formula-body">TEN × (Multiplicateur technique) ÷ 4</span>
+      </div>
+      <div class="formula stack">
+        <span class="formula-label">Technique de DGTS / INVU</span>
+        <span class="formula-body">TEN × (Multiplicateur technique + 1)</span>
+      </div>
+
+      <h2>Coût en A.A.P. et multiplicateur</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Coût en A.A.P.</th><th>Multiplicateur du Hatsu</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">5</td><td class="mono">0,25</td></tr>
+            <tr><td class="mono">10</td><td class="mono">0,5</td></tr>
+            <tr><td class="mono">15</td><td class="mono">0,75</td></tr>
+            <tr><td class="mono">20</td><td class="mono">1</td></tr>
+            <tr><td class="mono">25</td><td class="mono">1,25</td></tr>
+            <tr><td class="mono">30</td><td class="mono">1,5</td></tr>
+            <tr><td class="mono">35</td><td class="mono">1,75</td></tr>
+            <tr><td class="mono">40</td><td class="mono">2</td></tr>
+            <tr><td class="mono">45</td><td class="mono">2,25</td></tr>
+            <tr><td class="mono">50</td><td class="mono">2,5</td></tr>
+            <tr><td class="mono">55</td><td class="mono">2,75</td></tr>
+            <tr><td class="mono">60</td><td class="mono">3</td></tr>
+            <tr><td class="mono">65</td><td class="mono">3,25</td></tr>
+            <tr><td class="mono">70</td><td class="mono">3,5</td></tr>
+            <tr><td class="mono">75</td><td class="mono">3,75</td></tr>
+            <tr><td class="mono">80</td><td class="mono">4</td></tr>
+            <tr><td class="mono">85</td><td class="mono">4,25</td></tr>
+            <tr><td class="mono">90</td><td class="mono">4,5</td></tr>
+            <tr><td class="mono">95</td><td class="mono">4,75</td></tr>
+            <tr><td class="mono">100</td><td class="mono">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">Le multiplicateur vaut toujours <span class="mono">A.A.P. ÷ 20</span>.</p>
+    </article>
+
+    <!-- ---------- GYO ---------- -->
+    <article class="page" id="gyo">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">凝</span> Le Gyo</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">20 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ren">Ren</a> — niveau 1</li>
+        </ul>
+        <p class="prereq-aap">Coût d'utilisation&nbsp;: <strong>10 A.A.P.</strong></p>
+      </div>
+
+      <p class="lede">
+        En <strong>action gratuite</strong> au début de ton tour, tu peux décider d'utiliser le Gyo&nbsp;: cela permet
+        de voir et d'analyser l'aura, qu'elle soit visible ou invisible (via le In). Cependant, en Gyo,
+        tu ne peux plus utiliser de Ten ou de Ren jusqu'au début de ton prochain tour.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Maîtrise du Gyo</strong></td><td class="mono">20</td><td>Niveau 1 du Ren</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Arbre de peaufinage</h2>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Gyo monoculaire</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Tu utilises ton Gyo sur un seul œil. Le coût en A.A.P. passe à <strong>5</strong>.</p>
+        </div>
+        <div class="man">
+          <h4>Gyo discret</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#zetsu-actif">Zetsu actif</a></span>
+          </div>
+          <p>Permet d'utiliser le Gyo dans un état de <a href="#zetsu-actif" class="inline-link">Zetsu actif</a>.</p>
+        </div>
+        <div class="man">
+          <h4>Contrôle du flux du Gyo</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#ryu">Ryu</a></span>
+          </div>
+          <p>Permet d'utiliser le Ten, le Ren et le Ryu même en utilisant le Gyo.</p>
+        </div>
+      </div>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Gyo puissant</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
+            <span class="man-cond">Après Gyo monoculaire</span>
+          </div>
+          <p>Permet de voir les auras d'encore plus loin et améliore significativement la vue sur de très
+          longues distances. Incompatible avec le Gyo monoculaire, le Contrôle du flux du Gyo et le Gyo discret.
+          Coûte <strong>15 d'A.A.P.</strong></p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- SHU ---------- -->
+    <article class="page" id="shu">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">周</span> Le Shu</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">20 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ten">Ten</a> — niveau 1</li>
+          <li><a href="#ren">Ren</a> — niveau 1</li>
+        </ul>
+        <p class="prereq-aap">Coût d'utilisation&nbsp;: <strong>5 A.A.P.</strong></p>
+      </div>
+
+      <p class="lede">
+        En <strong>réaction</strong>, ton personnage peut utiliser le Shu défensivement. Il obtient un bonus
+        d'invulnérabilité, égal à la valeur du Ten, sur l'objet — cela permet surtout de protéger des objets fragiles.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Maîtrise du Shu</strong></td><td class="mono">20</td><td>Niveau 1 du Ten et du Ren</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>Shu avec une autre variante.</strong> Si tu utilises le Shu avec autre chose que du Ten, alors tu
+        dépenses le nombre d'A.A.P. égal au coût de la variante — et tu obtiens aussi le boost de cette variante.
+      </div>
+
+      <div class="note warn">
+        Pour accéder au <strong>niveau 2</strong> de l'arbre de peaufinage, tu dois avoir appris toutes les
+        techniques du niveau 1.
+      </div>
+
+      <h2>Arbre de peaufinage</h2>
+      <p>Chaque technique permet d'appliquer le Shu avec une autre variante que le Ten. Tu dépenses alors
+      l'A.A.P. de cette variante, et tu en obtiens le boost.</p>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Utilisation du Ko</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le Ko.</p>
+        </div>
+        <div class="man">
+          <h4>Utilisation du Ken</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#ken">Ken</a></span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le Ken.</p>
+        </div>
+        <div class="man">
+          <h4>Utilisation du Ryu</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Requiert <a href="#ryu">Ryu</a></span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le Ryu.</p>
+        </div>
+      </div>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Utilisation du Zetsu</h4>
+          <div class="man-meta">
+            <span class="man-cost">35 XP</span>
+            <span class="man-cond">Requiert <a href="#zetsu">Zetsu</a></span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le Zetsu.</p>
+        </div>
+        <div class="man">
+          <h4>Utilisation du In</h4>
+          <div class="man-meta">
+            <span class="man-cost">35 XP</span>
+            <span class="man-cond">Requiert <a href="#in">In</a></span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le In.</p>
+        </div>
+        <div class="man">
+          <h4>Utilisation du Zetsu actif</h4>
+          <div class="man-meta">
+            <span class="man-cost">50 XP</span>
+            <span class="man-cond">Requiert <a href="#zetsu-actif">Zetsu actif</a></span>
+            <span class="man-cond">Après Utilisation du Zetsu</span>
+          </div>
+          <p>Tu peux appliquer ton Shu en utilisant le Zetsu actif.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- KEN ---------- -->
+    <article class="page" id="ken">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">堅</span> Le Ken</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">40 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ten">Ten</a> — niveau 2</li>
+          <li><a href="#ren">Ren</a> — niveau 2</li>
+        </ul>
+        <p class="prereq-aap">Coût d'utilisation&nbsp;: <strong>20 A.A.P.</strong></p>
+      </div>
+
+      <p class="lede">
+        En <strong>action</strong>, tu décides d'intensifier le Ten autour de toi pour te protéger jusqu'au début
+        de ton prochain tour. Pendant l'utilisation du Ken, tu ne peux pas utiliser de Ko ou de Ryu.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Répartition uniforme <span class="step">(1)</span></td><td class="mono">10</td><td>Niveau 2 du Ten et du Ren</td></tr>
+            <tr><td><strong>Maîtrise du Ken</strong></td><td class="mono">30</td><td class="mono">(1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula">
+        <span class="formula-label">Valeur d'INVU du Ken</span>
+        <span class="formula-body">INVU du Ten × (Multiplicateur du Ren + 2 + 1)</span>
+      </div>
+
+      <h2>Arbre de peaufinage</h2>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Ken rapide</h4>
+          <div class="man-meta">
+            <span class="man-cost">100 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Tu peux utiliser le Ken en <strong>action gratuite</strong> au début de ton tour.</p>
+        </div>
+      </div>
+      <p class="footnote">L'arbre du Ken ne comporte qu'un seul niveau.</p>
+    </article>
+
+    <!-- ---------- KO ---------- -->
+    <article class="page" id="ko">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">硬</span> Le Ko</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">40 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ten">Ten</a> — niveau 2</li>
+          <li><a href="#zetsu">Zetsu</a> — niveau 2</li>
+        </ul>
+        <p class="prereq-aap">Coût d'utilisation&nbsp;: <strong>100 % de l'A.A.P.</strong></p>
+      </div>
+
+      <p class="lede">
+        En <strong>action gratuite</strong> au début de ton tour, tu peux réunir en un endroit toute ton aura pour
+        attaquer le plus fort possible. Si tu utilises cette variante, tu ne peux plus utiliser d'autre compétence
+        de Nen, et l'adversaire est au courant que tu utilises du Ko.
+      </p>
+
+      <div class="note warn">
+        Le Ko consomme <strong>100&nbsp;% de ton A.A.P.</strong>
+      </div>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Intensification extrême <span class="step">(1)</span></td><td class="mono">10</td><td>Niveau 2 du Ten<br>Niveau 2 du Zetsu</td></tr>
+            <tr><td><strong>Maîtrise du Ko</strong></td><td class="mono">30</td><td class="mono">(1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula stack">
+        <span class="formula-label">Valeur de DGTS du Ko</span>
+        <span class="formula-body">INVU du Ten × (Mult. du Ren + (6 + A.A.P. MAX × 0,05) + 1)</span>
+      </div>
+
+      <h2>Arbre de peaufinage</h2>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Ko surpuissant</h4>
+          <div class="man-meta">
+            <span class="man-cost">100 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Tu peux utiliser <strong>150&nbsp;%</strong> de ton A.A.P. pour ton Ko. En contrepartie, tu perds
+          <strong>50&nbsp;%</strong> de ton A.A.P. le prochain tour.</p>
+          <div class="formula inner">
+            <span class="formula-body">INVU du Ten × (Mult. du Ren + 6 + 3 + A.A.P. MAX × 0,05 × 1,5 + 1)</span>
+          </div>
+        </div>
+      </div>
+      <p class="footnote">L'arbre du Ko ne comporte qu'un seul niveau.</p>
+    </article>
+
+    <!-- ---------- IN ---------- -->
+    <article class="page" id="in">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">隠</span> Le In</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">40 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ten">Ten</a> — niveau 2</li>
+          <li><a href="#ren">Ren</a> — niveau 2</li>
+          <li><a href="#zetsu">Zetsu</a> — niveau 3</li>
+          <li>Maîtrise du <a href="#gyo">Gyo</a></li>
+        </ul>
+        <p class="prereq-aap">Coût d'utilisation&nbsp;: <strong>10 A.A.P.</strong></p>
+      </div>
+
+      <p class="lede">
+        En <strong>action gratuite</strong> au début de ton tour, tu peux décider d'utiliser ton In. Tu caches alors
+        entièrement ton aura et empêches toute personne de ressentir ton Nen (avec la compétence «&nbsp;Ressentir le
+        Nen&nbsp;») ou de voir ton aura à l'œil nu.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Cacher son aura <span class="step">(1)</span></td><td class="mono">10</td><td>Niveau 2 du Ten et du Ren<br>Niveau 3 du Zetsu<br>Maîtrise du Gyo</td></tr>
+            <tr><td><strong>Maîtrise du In</strong></td><td class="mono">30</td><td class="mono">(1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Arbre de peaufinage</h2>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>In illusoire <span class="tag">Illusoire</span></h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Ton aura est toujours invisible, cependant tu peux décider qu'elle puisse être ressentie par
+          «&nbsp;Ressentir le Nen&nbsp;». Cela permet de rester discret sans utiliser le Zetsu, et de ne pas
+          révéler à la personne que tu espionnes que tu essaies de cacher ton aura.</p>
+        </div>
+        <div class="man">
+          <h4>In partiel</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Au lieu de cacher entièrement ton aura, tu peux décider de répartir le In comme tu le souhaites.</p>
+        </div>
+      </div>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>In + Ko</h4>
+          <div class="man-meta">
+            <span class="man-cost">50 XP</span>
+            <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
+          </div>
+          <p>Tu peux utiliser le Ko en début de ton tour sans que ton adversaire sache tout de suite que tu utilises un Ko.</p>
+        </div>
+        <div class="man">
+          <h4>In + En</h4>
+          <div class="man-meta">
+            <span class="man-cost">50 XP</span>
+            <span class="man-cond">Après In + Ko</span>
+          </div>
+          <p>Permet de rendre ton En invisible.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- RYU ---------- -->
+    <article class="page" id="ryu">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1><span class="title-kanji">流</span> Le Ryu</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">60 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#ten">Ten</a> — niveau 2</li>
+          <li><a href="#ren">Ren</a> — niveau 2</li>
+          <li>Maîtrise du <a href="#ken">Ken</a></li>
+          <li>Maîtrise du <a href="#ko">Ko</a></li>
+        </ul>
+      </div>
+
+      <p class="lede">
+        En <strong>action gratuite</strong> au début de ton tour, tu peux décider d'utiliser ton Ryu, ce qui peut
+        bonifier tes dégâts et ton invulnérabilité.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Répartition de l'aura <span class="step">(1)</span></td><td class="mono">10</td><td>Niveau 2 du Ten et du Ren<br>Maîtrise du Ken et du Ko</td></tr>
+            <tr><td>Fonctionnement des pourcentages <span class="step">(2)</span></td><td class="mono">20</td><td class="mono">(1)</td></tr>
+            <tr><td><strong>Maîtrise du Ryu</strong></td><td class="mono">30</td><td class="mono">(2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Le coût en A.A.P.</h2>
+      <p>
+        Tu as deux choix de coût d'A.A.P. lorsque tu utilises du Ryu&nbsp;: soit <strong>50&nbsp;%</strong>,
+        soit <strong>100&nbsp;%</strong> de ton A.A.P. MAX.
+      </p>
+      <div class="note warn">
+        Tu ne peux pas utiliser 100&nbsp;% de ton A.A.P. MAX si tu as déjà dépensé de l'A.A.P. avant l'activation
+        du Ryu — comme avec du Shu ou du Gyo, par exemple.
+      </div>
+
+      <h2>La répartition</h2>
+      <p>
+        Le but du Ryu est de répartir en pourcentage l'efficacité entre l'<strong>offensif</strong> et le
+        <strong>défensif</strong>. Une fois les pourcentages choisis, tu les gardes jusqu'au début de ton prochain tour.
+      </p>
+      <p>
+        Pour simplifier les règles, ton Ryu aura une valeur max à 50&nbsp;% et 100&nbsp;%&nbsp;: tu pourras répartir
+        de manière brute entre les <strong>DGTS</strong> et l'<strong>ENCAISSEMENT</strong>, et non en pourcentage.
+      </p>
+      <div class="example">
+        <span class="example-label">Exemple</span>
+        <p>Si tu as un Ryu à 50&nbsp;% qui équivaut à <span class="mono">100</span>, tu décides de répartir
+        <span class="mono">60</span> en DGTS et <span class="mono">40</span> en ENCAISSEMENT. Cela évite les calculs compliqués.</p>
+      </div>
+
+      <h2>Protéger son corps</h2>
+      <p>
+        Lorsque tu utilises du Ryu et que tu te fais attaquer, tu dois choisir une des <strong>6 parties</strong> de
+        ton corps à protéger. Si tu ne protèges pas une partie que l'adversaire a blessée, alors tu ne bénéficieras
+        pas de l'ENCAISSEMENT du Ryu.
+      </p>
+      <div class="formula stack">
+        <span class="formula-label">Valeur de DGTS / INVU du Ryu</span>
+        <span class="formula-body">INVU du Ten × (Mult. du Ren + (6 + A.A.P. MAX × 0,05) + 1) × Pourcentage d'A.A.P.</span>
+      </div>
+      <div class="note">
+        <strong>Ryu n.</strong> Tu peux défendre <em>n</em> parties de ton corps avec ton Ryu.
+      </div>
+    </article>
+
+    <!-- ---------- ZETSU ACTIF ---------- -->
+    <article class="page" id="zetsu-actif">
+      <p class="eyebrow">Le Nen — Variante</p>
+      <h1>Le Zetsu actif</h1>
+
+      <div class="prereq">
+        <div class="prereq-head">
+          <span class="prereq-label">Conditions d'apprentissage</span>
+          <span class="prereq-cost">40 XP</span>
+        </div>
+        <ul class="prereq-list">
+          <li><a href="#zetsu">Zetsu</a> — niveau 4</li>
+        </ul>
+      </div>
+
+      <p class="lede">
+        En <strong>action</strong>, tu peux te mettre en état de Zetsu actif afin de bénéficier des avantages du Zetsu.
+        Tu peux tout de même utiliser ton Nen en action et/ou en réaction pendant ton tour — mais cela enlève
+        les bénéfices du Zetsu.
+      </p>
+
+      <h2>Tableau d'apprentissage</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nom</th><th>Coût en XP</th><th>Conditions</th></tr></thead>
+          <tbody>
+            <tr><td>Bloquer la génération de Nen <span class="step">(1)</span></td><td class="mono">10</td><td>Zetsu niveau 4</td></tr>
+            <tr><td><strong>Maîtrise du Zetsu actif</strong></td><td class="mono">30</td><td class="mono">(1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <footer class="page-foot">
+      <div class="foot-nav" id="footNav"></div>
+      <p class="foot-credit">Compendium des règles du JDR <strong>Hunter × Hunter</strong> — document de table non officiel.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
