@@ -376,6 +376,13 @@ td.neg{ color:var(--red); font-weight:500; }
 .man-cond a{ color:var(--text-2); text-decoration:none; border-bottom:1px solid var(--line-3); }
 .man-cond a:hover{ color:var(--green); }
 
+/* Mise en évidence de la technique ciblée par une ancre interne */
+.man.flash{ animation:flash 1.6s ease-out 1; }
+@keyframes flash{
+  0%   { border-color:var(--green); background:var(--green-tint-2); }
+  100% { border-color:var(--line);  background:var(--panel); }
+}
+
 /* ============ ENCADRÉS ============ */
 .note{
   margin:0 0 26px; padding:16px 20px 16px 22px;

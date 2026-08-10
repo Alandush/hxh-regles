@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
 </head>
 <body>
@@ -603,7 +603,7 @@
           <thead><tr><th>Nom de l'arme</th><th>DGTS</th><th>INI</th><th>Carac.</th><th>Attributs</th><th>PC</th></tr></thead>
           <tbody>
             <tr><td>Dague</td><td class="mono">4</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Coupe-gorge</td><td class="mono">30</td></tr>
-            <tr><td>Dague de parade</td><td class="mono">2</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Défensif</td><td class="mono">20</td></tr>
+            <tr><td>Dague de parade</td><td class="mono">2</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Défense de secours</td><td class="mono">20</td></tr>
             <tr><td>Miséricorde</td><td class="mono">4</td><td class="mono">+2</td><td>DEX</td><td>Portée (3&nbsp;m, 9&nbsp;m), Légère, Brise-armure</td><td class="mono">50</td></tr>
           </tbody>
         </table>
@@ -648,6 +648,7 @@
       <dl class="glossary wide">
         <dt>Polyvalent</dt><dd>Peut se porter à une main ou à deux mains.</dd>
         <dt>Défensif</dt><dd>Cette arme donne un bonus de 5 à la PRD.</dd>
+        <dt>Défense de secours</dt><dd>Cette arme donne un bonus de 2 à la PRD.</dd>
         <dt>Grande</dt><dd>Cette arme vous donne un malus de 15 dans les espaces confinés.</dd>
         <dt>Allonge</dt><dd>Vous pouvez taper jusqu'à 3 mètres (2 cases).</dd>
         <dt>Légère</dt><dd>Peut être utilisée dans votre main faible, si dans votre main forte vous avez une arme légère.</dd>
@@ -1014,7 +1015,7 @@
 
       <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
       <div class="maneuvers">
-        <div class="man">
+        <div class="man" id="gyo-monoculaire">
           <h4>Gyo monoculaire</h4>
           <div class="man-meta">
             <span class="man-cost">25 XP</span>
@@ -1038,16 +1039,12 @@
           </div>
           <p>Permet d'utiliser le Ten, le Ren et le Ryu même en utilisant le Gyo.</p>
         </div>
-      </div>
-
-      <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
-      <div class="maneuvers">
         <div class="man">
           <h4>Gyo puissant</h4>
           <div class="man-meta">
             <span class="man-cost">25 XP</span>
             <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
-            <span class="man-cond">Après Gyo monoculaire</span>
+            <span class="man-cond">Requiert <a href="#gyo-monoculaire">Gyo monoculaire</a></span>
           </div>
           <p>Permet de voir les auras d'encore plus loin et améliore significativement la vue sur de très
           longues distances. Incompatible avec le Gyo monoculaire, le Contrôle du flux du Gyo et le Gyo discret.
@@ -1099,8 +1096,8 @@
       </div>
 
       <h2>Arbre de peaufinage</h2>
-      <p>Chaque technique permet d'appliquer le Shu avec une autre variante que le Ten. Tu dépenses alors
-      l'A.A.P. de cette variante, et tu en obtiens le boost.</p>
+      <p>Chaque technique permet d'utiliser une autre variante que le Ten <strong>sur ton Shu</strong>.
+      Tu dépenses alors l'A.A.P. de cette variante, et tu en obtiens le boost.</p>
 
       <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
       <div class="maneuvers">
@@ -1110,7 +1107,7 @@
             <span class="man-cost">25 XP</span>
             <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
           </div>
-          <p>Tu peux appliquer ton Shu en utilisant le Ko.</p>
+          <p>Tu peux utiliser du Ko sur ton Shu.</p>
         </div>
         <div class="man">
           <h4>Utilisation du Ken</h4>
@@ -1118,7 +1115,7 @@
             <span class="man-cost">25 XP</span>
             <span class="man-cond">Requiert <a href="#ken">Ken</a></span>
           </div>
-          <p>Tu peux appliquer ton Shu en utilisant le Ken.</p>
+          <p>Tu peux utiliser du Ken sur ton Shu.</p>
         </div>
         <div class="man">
           <h4>Utilisation du Ryu</h4>
@@ -1126,36 +1123,39 @@
             <span class="man-cost">25 XP</span>
             <span class="man-cond">Requiert <a href="#ryu">Ryu</a></span>
           </div>
-          <p>Tu peux appliquer ton Shu en utilisant le Ryu.</p>
+          <p>Tu peux utiliser du Ryu sur ton Shu.</p>
         </div>
       </div>
 
       <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
       <div class="maneuvers">
-        <div class="man">
+        <div class="man" id="shu-utilisation-zetsu">
           <h4>Utilisation du Zetsu</h4>
           <div class="man-meta">
             <span class="man-cost">35 XP</span>
+            <span class="man-cond">Requiert tout le niveau 1</span>
             <span class="man-cond">Requiert <a href="#zetsu">Zetsu</a></span>
           </div>
-          <p>Tu peux appliquer ton Shu en utilisant le Zetsu.</p>
-        </div>
-        <div class="man">
-          <h4>Utilisation du In</h4>
-          <div class="man-meta">
-            <span class="man-cost">35 XP</span>
-            <span class="man-cond">Requiert <a href="#in">In</a></span>
-          </div>
-          <p>Tu peux appliquer ton Shu en utilisant le In.</p>
+          <p>Tu peux utiliser du Zetsu sur ton Shu.</p>
         </div>
         <div class="man">
           <h4>Utilisation du Zetsu actif</h4>
           <div class="man-meta">
             <span class="man-cost">50 XP</span>
+            <span class="man-cond">Requiert tout le niveau 1</span>
             <span class="man-cond">Requiert <a href="#zetsu-actif">Zetsu actif</a></span>
-            <span class="man-cond">Après Utilisation du Zetsu</span>
+            <span class="man-cond">Requiert <a href="#shu-utilisation-zetsu">Utilisation du Zetsu</a></span>
           </div>
-          <p>Tu peux appliquer ton Shu en utilisant le Zetsu actif.</p>
+          <p>Tu peux utiliser du Zetsu actif sur ton Shu.</p>
+        </div>
+        <div class="man">
+          <h4>Utilisation du In</h4>
+          <div class="man-meta">
+            <span class="man-cost">35 XP</span>
+            <span class="man-cond">Requiert tout le niveau 1</span>
+            <span class="man-cond">Requiert <a href="#in">In</a></span>
+          </div>
+          <p>Tu peux utiliser du In sur ton Shu.</p>
         </div>
       </div>
     </article>
@@ -1339,10 +1339,11 @@
 
       <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
       <div class="maneuvers">
-        <div class="man">
+        <div class="man" id="in-plus-ko">
           <h4>In + Ko</h4>
           <div class="man-meta">
             <span class="man-cost">50 XP</span>
+            <span class="man-cond">Requiert tout le niveau 1</span>
             <span class="man-cond">Requiert <a href="#ko">Ko</a></span>
           </div>
           <p>Tu peux utiliser le Ko en début de ton tour sans que ton adversaire sache tout de suite que tu utilises un Ko.</p>
@@ -1351,7 +1352,8 @@
           <h4>In + En</h4>
           <div class="man-meta">
             <span class="man-cost">50 XP</span>
-            <span class="man-cond">Après In + Ko</span>
+            <span class="man-cond">Requiert tout le niveau 1</span>
+            <span class="man-cond">Requiert <a href="#in-plus-ko">In + Ko</a></span>
           </div>
           <p>Permet de rendre ton En invisible.</p>
         </div>
@@ -1465,13 +1467,20 @@
         <ul class="prereq-list">
           <li><a href="#zetsu">Zetsu</a> — niveau 4</li>
         </ul>
+        <p class="prereq-aap">Condition d'utilisation&nbsp;: ne pas consommer plus de <strong>20 A.A.P.</strong></p>
       </div>
 
       <p class="lede">
-        En <strong>action</strong>, tu peux te mettre en état de Zetsu actif afin de bénéficier des avantages du Zetsu.
-        Tu peux tout de même utiliser ton Nen en action et/ou en réaction pendant ton tour — mais cela enlève
+        En <strong>action</strong>, si tu ne consommes pas plus de <strong>20 A.A.P.</strong>, tu peux te mettre
+        en état de Zetsu actif afin de bénéficier des <strong>quasi-avantages</strong> du Zetsu.
+        Tu peux tout de même utiliser ton Nen en action et/ou en réaction pendant ton tour&nbsp;: cela enlève
         les bénéfices du Zetsu.
       </p>
+
+      <div class="note warn">
+        <strong>Le Zetsu actif se repère.</strong> Certaines compétences de Hatsu pourront détecter un Zetsu
+        actif, là où elles ne détecteraient pas un Zetsu classique.
+      </div>
 
       <h2>Tableau d'apprentissage</h2>
       <div class="table-wrap">
@@ -1485,10 +1494,51 @@
       </div>
 
       <h2>Arbre de peaufinage</h2>
-      <div class="note warn">
-        <strong>Aucun arbre dans le document.</strong> Le Zetsu actif est la seule variante qui n'a pas d'arbre
-        de peaufinage&nbsp;: la page correspondante du PDF s'arrête au tableau d'apprentissage. Il est en revanche
-        exigé comme condition par <em>Gyo discret</em> et par <em>Utilisation du Zetsu actif</em> (Shu, niveau 2).
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 1</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Zetsu stationnaire</h4>
+          <div class="man-meta">
+            <span class="man-cost">25 XP</span>
+            <span class="man-cond">Aucune condition</span>
+          </div>
+          <p>Si tu utilises le Zetsu actif et que tu restes immobile, tu bénéficies de la grande discrétion
+          du Zetsu <em>et</em> des bénéfices du Zetsu actif.</p>
+        </div>
+      </div>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 2</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Zetsu parfait</h4>
+          <div class="man-meta">
+            <span class="man-cost">50 XP</span>
+            <span class="man-cond">Requiert niveau 2 du Zetsu actif</span>
+            <span class="man-cond">NEN = 5</span>
+          </div>
+          <p>En état de Zetsu actif <strong>uniquement</strong>, tu peux en action te fondre dans le Nen
+          environnant. Tu ne crées pas de trou de Nen pendant un round.</p>
+        </div>
+      </div>
+
+      <h3 class="tree-lvl"><span class="rank">Niveau 3</span></h3>
+      <div class="maneuvers">
+        <div class="man">
+          <h4>Zetsu stroboscopique</h4>
+          <div class="man-meta">
+            <span class="man-cost">100 XP</span>
+            <span class="man-cond">Requiert niveau 3 du Zetsu actif</span>
+            <span class="man-cond">NEN = 7</span>
+          </div>
+          <p>Lorsque tu es en Zetsu (ou en Zetsu actif) à l'intérieur d'un En, tu ne peux pas être détecté
+          par un En normal pendant un round.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Le trou de Nen.</strong> C'est ce qui permet de savoir que quelqu'un a utilisé son Zetsu non
+        loin de toi&nbsp;: tu vois un espace vide de Nen apparaître d'un seul coup.
       </div>
     </article>
 
@@ -1500,6 +1550,6 @@
   </main>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

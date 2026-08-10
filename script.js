@@ -43,6 +43,14 @@
 
   function show(id, skipScroll) {
     var target = document.getElementById(id);
+    var anchor = null;
+
+    // Ancre interne (une technique dans un arbre) : on ouvre sa page et on la cible
+    if (target && !target.classList.contains('page')) {
+      var host = target.closest('.page');
+      if (host) { anchor = target; target = host; id = host.id; }
+    }
+
     if (!target || !target.classList.contains('page')) {
       id = order[0];
       target = document.getElementById(id);
@@ -54,7 +62,22 @@
     buildFootNav(id);
     document.title = labelOf(id) + ' — Règles du JDR Hunter × Hunter';
 
-    if (!skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+    if (anchor) {
+      // Lire getBoundingClientRect force le recalcul de la mise en page qui vient
+      // d'être invalidée par le changement de page : la position est donc à jour.
+      // On positionne nous-mêmes plutôt que par scrollIntoView, qui se cale sur un
+      // layout périmé. Pas de requestAnimationFrame : il ne se déclenche pas dans
+      // un onglet d'arrière-plan. 'instant' court-circuite le scroll-behavior:smooth.
+      var top = anchor.getBoundingClientRect().top + window.scrollY
+              - (window.innerHeight / 2) + (anchor.offsetHeight / 2);
+      window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+      anchor.classList.remove('flash');
+      void anchor.offsetWidth;          // force le redémarrage de l'animation
+      anchor.classList.add('flash');
+    } else if (!skipScroll) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     closeMenu();
   }
 
