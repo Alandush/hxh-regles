@@ -197,9 +197,9 @@ h4{ font-family:var(--f-body); font-weight:600; font-size:1rem; margin:0 0 6px; 
 
 p{ margin:0 0 16px; max-width:var(--measure); color:var(--text); }
 .lede{
-  font-family:var(--f-serif); font-size:1.32rem; line-height:1.62;
-  color:var(--text-2); font-weight:400;
-  margin-bottom:30px; max-width:66ch;
+  font-family:var(--f-body); font-size:1.1rem; line-height:1.68;
+  color:var(--text-2); font-weight:350;
+  margin-bottom:30px; max-width:70ch;
 }
 .lede strong{ color:var(--green-soft); font-weight:600; }
 
@@ -397,14 +397,6 @@ td.neg{ color:var(--red); font-weight:500; }
   border-left-color:var(--amber);
 }
 .note.warn strong{ color:var(--amber); }
-
-.quote{
-  margin:0 0 26px; padding:22px 26px;
-  font-family:var(--f-serif); font-style:italic; font-size:1.32rem; line-height:1.6;
-  color:var(--text); max-width:64ch;
-  border-left:2px solid var(--green);
-  background:var(--green-tint);
-}
 
 .example{
   margin:0 0 26px; padding:16px 20px;
