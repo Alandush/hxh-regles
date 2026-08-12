@@ -49,6 +49,9 @@
 
 *,*::before,*::after{ box-sizing:border-box; }
 
+/* [hidden] doit l'emporter sur les display: explicites (.layout est en flex) */
+[hidden]{ display:none !important; }
+
 html{ scroll-behavior:smooth; }
 
 body{
@@ -72,6 +75,210 @@ body{
   background:var(--bg);
   border-bottom:1px solid var(--line-2);
 }
+.head-nav{ display:flex; align-items:center; gap:6px; }
+.head-link{
+  padding:8px 16px;
+  font-family:var(--f-title); font-size:14px; font-weight:600;
+  letter-spacing:.06em; color:var(--text-2); text-decoration:none;
+  border:1px solid transparent; border-radius:5px;
+  transition:.16s ease;
+}
+.head-link:hover{ color:var(--text); background:var(--panel); }
+.head-link.active{
+  color:var(--green-soft); background:var(--green-tint);
+  border-color:var(--green-dark);
+}
+
+/* ============ SECTION : ARBRES DE NEN ============ */
+.section-arbres{ padding:0; }
+.arbre-wrap{
+  position:relative;
+  height:calc(100vh - var(--topbar-h));
+  overflow:hidden;
+  background:var(--bg-2);
+  /* Glisser un nœud ne doit pas sélectionner les libellés du canevas */
+  user-select:none; -webkit-user-select:none;
+}
+/* Le formulaire et le dialogue restent sélectionnables et copiables */
+.arbre-panneau, .arbre-dialogue{ user-select:text; -webkit-user-select:text; }
+.arbre-svg{
+  width:100%; height:100%; display:block;
+  cursor:grab; touch-action:none;
+}
+.arbre-svg.glisse{ cursor:grabbing; }
+
+/* --- liens --- */
+.arbre-lien{ stroke:var(--line-3); stroke-width:3; }
+
+/* --- nœuds --- */
+.arbre-noeud{ cursor:pointer; outline:none; }
+.arbre-noeud .hex{
+  fill:var(--panel-2); stroke:var(--line-3); stroke-width:2;
+  transition:fill .15s ease, stroke .15s ease;
+}
+.arbre-noeud:hover .hex,
+.arbre-noeud:focus-visible .hex{ fill:var(--panel-3); stroke:var(--green-deep); }
+.arbre-noeud.actif .hex{ fill:var(--green-tint-2); stroke:var(--green); stroke-width:3; }
+
+.arbre-noeud text{
+  text-anchor:middle; pointer-events:none;
+  font-family:var(--f-body); fill:var(--text-2);
+}
+.arbre-noeud .nom{ font-size:13px; font-weight:600; fill:var(--text); }
+.arbre-noeud .xp{ font-family:var(--f-mono); font-size:12px; fill:var(--green); }
+.arbre-noeud .kanji{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","MS Mincho",serif;
+  font-size:34px; fill:var(--text);
+}
+.arbre-noeud .etiquette{
+  font-family:var(--f-title); font-size:15px; font-weight:600;
+  letter-spacing:.04em; fill:var(--text);
+}
+
+.arbre-coeur .hex{ fill:var(--panel-3); stroke:var(--green-dark); }
+.arbre-coeur .kanji{ font-size:54px; fill:var(--green); }
+
+/* Ce que les joueurs apprennent : des cercles */
+.arbre-noeud .rond{
+  fill:var(--panel-2); stroke:var(--line-3); stroke-width:2;
+  transition:fill .15s ease, stroke .15s ease;
+}
+.arbre-noeud:hover .rond,
+.arbre-noeud:focus-visible .rond{ fill:var(--panel-3); stroke:var(--green-deep); }
+.arbre-noeud.actif .rond{ fill:var(--green-tint-2); stroke:var(--green); stroke-width:3; }
+.arbre-entree .nom{ font-size:12.5px; }
+.arbre-entree .xp{ font-size:11px; }
+.arbre-noeud.vide .rond{ fill:var(--bg-2); stroke-dasharray:5 4; }
+
+/* Les six natures gardent leur couleur canonique, en version sourde */
+.arbre-categorie .hex{ stroke-width:3; }
+.nature-renforcement    .hex{ stroke:#5f9e78; } .nature-renforcement    .kanji{ fill:#7cb593; }
+.nature-emission        .hex{ stroke:#b8904a; } .nature-emission        .kanji{ fill:#cfa863; }
+.nature-transformation  .hex{ stroke:#8a6fa0; } .nature-transformation  .kanji{ fill:#a58cb8; }
+.nature-materialisation .hex{ stroke:#b96b63; } .nature-materialisation .kanji{ fill:#cf877f; }
+.nature-manipulation    .hex{ stroke:#8a949a; } .nature-manipulation    .kanji{ fill:#a6b0b5; }
+.nature-specialisation  .hex{ stroke:#5f86a8; } .nature-specialisation  .kanji{ fill:#7fa4c2; }
+
+/* --- outils --- */
+.arbre-outils{
+  position:absolute; top:18px; left:18px; z-index:2;
+  display:flex; gap:8px;
+}
+.arbre-btn{
+  min-width:36px; height:36px; padding:0 10px; cursor:pointer;
+  font-family:var(--f-body); font-size:15px; font-weight:600; color:var(--text-2);
+  background:var(--panel); border:1px solid var(--line-2); border-radius:5px;
+  transition:.16s ease;
+}
+.arbre-btn.large{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+.arbre-btn:hover{ color:var(--green); border-color:var(--green-dark); background:var(--panel-2); }
+
+.arbre-btn.actif{ color:var(--green-soft); background:var(--green-tint); border-color:var(--green); }
+.arbre-btn.danger:hover{ color:var(--red); border-color:#5a3b37; }
+
+.arbre-outils-edition{
+  position:absolute; top:64px; left:18px; z-index:2;
+  display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+  max-width:calc(100% - 400px);
+}
+.arbre-sep{ width:1px; height:22px; background:var(--line-3); }
+
+.arbre-aide{
+  position:absolute; left:18px; bottom:16px; z-index:2; margin:0;
+  font-size:12.5px; color:var(--text-3);
+}
+
+/* --- formulaire d'édition --- */
+.arbre-champ{ display:block; margin-bottom:14px; }
+.arbre-champ-legende{
+  display:block; margin-bottom:5px;
+  font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--text-3);
+}
+.arbre-champ input,
+.arbre-champ textarea,
+.arbre-champ select{
+  width:100%; padding:8px 11px;
+  font-family:var(--f-body); font-size:14px; color:var(--text);
+  background:var(--bg-2); border:1px solid var(--line-2); border-radius:5px;
+  outline:none;
+}
+.arbre-champ textarea{ min-height:96px; resize:vertical; line-height:1.55; }
+.arbre-champ input:focus,
+.arbre-champ textarea:focus,
+.arbre-champ select:focus{ border-color:var(--green-dark); }
+
+.arbre-liens-liste{ margin-top:18px; padding-top:14px; border-top:1px solid var(--line); }
+.arbre-liens-vide{ margin:6px 0 0; font-size:13px; color:var(--text-3); font-style:italic; }
+.arbre-lien-item{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:6px 10px; margin-top:6px;
+  font-size:13.5px; color:var(--text-2);
+  background:var(--panel-3); border:1px solid var(--line-2); border-radius:5px;
+}
+.arbre-lien-suppr{
+  flex:none; width:22px; height:22px; padding:0; cursor:pointer;
+  font-size:15px; line-height:1; color:var(--text-3);
+  background:transparent; border:1px solid var(--line-3); border-radius:4px;
+}
+.arbre-lien-suppr:hover{ color:var(--red); border-color:#5a3b37; }
+
+/* --- dialogue export / import --- */
+.arbre-dialogue{
+  position:absolute; z-index:5; inset:auto;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(680px, calc(100% - 48px));
+  padding:24px 26px;
+  background:var(--panel); border:1px solid var(--line-3); border-radius:var(--radius);
+}
+.arbre-dialogue h3{
+  margin:0 0 6px; font-family:var(--f-title); font-size:1.2rem; color:#e9efea;
+}
+.arbre-dialogue-aide{ margin:0 0 14px; font-size:13.5px; color:var(--text-3); }
+.arbre-dialogue textarea{
+  width:100%; height:320px; padding:12px 14px;
+  font-family:var(--f-mono); font-size:12.5px; line-height:1.5; color:var(--text-2);
+  background:var(--bg-2); border:1px solid var(--line-2); border-radius:5px;
+  outline:none; resize:vertical;
+}
+.arbre-dialogue-actions{ display:flex; gap:8px; margin-top:14px; }
+
+/* --- panneau de détail --- */
+.arbre-panneau{
+  position:absolute; top:18px; right:18px; z-index:2;
+  width:320px; max-height:calc(100% - 36px); overflow-y:auto;
+  padding:20px 22px;
+  background:var(--panel); border:1px solid var(--line-2); border-radius:var(--radius);
+}
+.arbre-panneau-vide{
+  margin:0; font-family:var(--f-serif); font-style:italic; color:var(--text-3);
+}
+.arbre-panneau-type{
+  margin:0 0 8px;
+  font-size:10.5px; font-weight:600; letter-spacing:.19em; text-transform:uppercase;
+  color:var(--green-deep);
+}
+.arbre-panneau-titre{
+  margin:0 0 10px; padding:0; border:none;
+  font-family:var(--f-title); font-size:1.3rem; letter-spacing:.02em; color:#e9efea;
+}
+.arbre-panneau-titre .k{
+  margin-right:.35em; color:var(--green);
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif; font-weight:400;
+}
+.arbre-panneau-xp{
+  margin:0 0 12px; font-family:var(--f-mono); font-size:13px; color:var(--green);
+}
+.arbre-panneau-effet{ margin:0; font-size:14.5px; line-height:1.62; color:var(--text-2); }
+
+@media (max-width: 760px){
+  .arbre-panneau{
+    top:auto; bottom:0; right:0; left:0; width:auto;
+    max-height:42%; border-radius:var(--radius) var(--radius) 0 0;
+  }
+  .arbre-aide{ display:none; }
+}
+
 .burger{
   display:none; flex-direction:column; gap:4.5px;
   width:38px; height:38px; padding:0;
@@ -567,6 +774,7 @@ h2 .rank{ position:relative; top:-2px; }
 @media (max-width: 520px){
   body{ font-size:16px; }
   .content{ padding:26px 16px 60px; }
+  .head-link{ padding:8px 11px; font-size:13px; }
 }
 
 /* ============ IMPRESSION ============ */

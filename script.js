@@ -1,6 +1,7 @@
 /* =========================================================
    HUNTER × HUNTER — Compendium des règles
-   Navigation par hash, recherche, lanceur de dés
+   Deux sections (Règles / Arbres de Nen), navigation par hash,
+   recherche dans le sommaire
    ========================================================= */
 (function () {
   'use strict';
@@ -11,6 +12,13 @@
   var scrim   = document.getElementById('scrim');
   var burger  = document.getElementById('burger');
   var footNav = document.getElementById('footNav');
+
+  var sectionRegles = document.getElementById('sectionRegles');
+  var sectionArbres = document.getElementById('sectionArbres');
+  var headRegles    = document.getElementById('headRegles');
+  var headArbres    = document.getElementById('headArbres');
+
+  var ARBRES = 'arbres';   // hash réservé à la seconde section
 
   var order = links.map(function (a) { return a.getAttribute('href').slice(1); });
 
@@ -41,7 +49,29 @@
     footNav.innerHTML = html;
   }
 
+  // Bascule entre les deux sections de haut niveau
+  function setSection(name) {
+    var arbres = (name === ARBRES);
+    sectionRegles.hidden = arbres;
+    sectionArbres.hidden = !arbres;
+    headRegles.classList.toggle('active', !arbres);
+    headArbres.classList.toggle('active', arbres);
+    // Le sommaire latéral n'appartient qu'aux Règles
+    burger.style.display = arbres ? 'none' : '';
+    // Le canevas ne peut se dimensionner qu'une fois la section visible
+    if (arbres && window.ArbreNen) window.ArbreNen.afficher();
+  }
+
   function show(id, skipScroll) {
+    if (id === ARBRES) {
+      setSection(ARBRES);
+      document.title = 'Arbres de Nen — Règles du JDR Hunter × Hunter';
+      if (!skipScroll) window.scrollTo({ top: 0, behavior: 'instant' });
+      closeMenu();
+      return;
+    }
+    setSection('regles');
+
     var target = document.getElementById(id);
     var anchor = null;
 

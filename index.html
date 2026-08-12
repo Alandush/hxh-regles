@@ -8,19 +8,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=9">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
 </head>
 <body>
 
 <header class="topbar">
-  <!-- Header vide : le nav viendra ici. -->
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+  <nav class="head-nav">
+    <a href="#intro"  class="head-link" id="headRegles">Règles</a>
+    <a href="#arbres" class="head-link" id="headArbres">Arbres de Nen</a>
+  </nav>
 </header>
 
-<div class="layout">
+<div class="layout" id="sectionRegles">
 
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
@@ -1661,6 +1664,55 @@
   </main>
 </div>
 
-<script src="script.js?v=4"></script>
+<!-- ============ SECTION : ARBRES DE NEN ============ -->
+<main class="section-arbres" id="sectionArbres" hidden>
+  <div class="arbre-wrap" id="arbreWrap">
+
+    <svg class="arbre-svg" id="arbreSvg" xmlns="http://www.w3.org/2000/svg">
+      <g id="arbreViewport">
+        <g id="arbreLiens"></g>
+        <g id="arbreNoeuds"></g>
+      </g>
+    </svg>
+
+    <div class="arbre-outils">
+      <button type="button" class="arbre-btn" id="arbreZoomPlus"  title="Zoomer">+</button>
+      <button type="button" class="arbre-btn" id="arbreZoomMoins" title="Dézoomer">−</button>
+      <button type="button" class="arbre-btn large" id="arbreRecentrer" title="Recentrer">Recentrer</button>
+      <button type="button" class="arbre-btn large" id="arbreEdition" title="Activer l'édition">Édition</button>
+    </div>
+
+    <div class="arbre-outils-edition" id="arbreOutilsEdition" hidden>
+      <button type="button" class="arbre-btn large" id="arbreAddCercle">+ Cercle</button>
+      <button type="button" class="arbre-btn large" id="arbreAddHex">+ Hexagone</button>
+      <button type="button" class="arbre-btn large" id="arbreLier">Lier</button>
+      <button type="button" class="arbre-btn large danger" id="arbreSupprimer">Supprimer</button>
+      <span class="arbre-sep"></span>
+      <button type="button" class="arbre-btn large" id="arbreExport">Exporter</button>
+      <button type="button" class="arbre-btn large" id="arbreImport">Importer</button>
+      <button type="button" class="arbre-btn large danger" id="arbreReset">Réinitialiser</button>
+    </div>
+
+    <p class="arbre-aide" id="arbreAide">Glisse pour te déplacer · molette pour zoomer · clique un nœud</p>
+
+    <aside class="arbre-panneau" id="arbrePanneau">
+      <p class="arbre-panneau-vide">Sélectionne un nœud pour voir son effet.</p>
+    </aside>
+
+    <div class="arbre-dialogue" id="arbreDialogue" hidden>
+      <h3 id="arbreDialogueTitre">Exporter</h3>
+      <p class="arbre-dialogue-aide" id="arbreDialogueAide"></p>
+      <textarea id="arbreDialogueTexte" spellcheck="false"></textarea>
+      <div class="arbre-dialogue-actions">
+        <button type="button" class="arbre-btn large" id="arbreDialogueOk">Appliquer</button>
+        <button type="button" class="arbre-btn large" id="arbreDialogueFermer">Fermer</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="script.js?v=5"></script>
+<script src="arbre.js?v=8"></script>
 </body>
 </html>
