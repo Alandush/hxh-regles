@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=15">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
 </head>
 <body>
@@ -1685,7 +1685,12 @@
     <div class="arbre-outils-edition" id="arbreOutilsEdition" hidden>
       <button type="button" class="arbre-btn large" id="arbreAddCercle">+ Cercle</button>
       <button type="button" class="arbre-btn large" id="arbreAddHex">+ Hexagone</button>
+      <button type="button" class="arbre-btn large" id="arbreAddQuint">+ Quintessence</button>
       <button type="button" class="arbre-btn large" id="arbreLier">Lier</button>
+      <span class="arbre-sep"></span>
+      <button type="button" class="arbre-btn large" id="arbreCopier" title="Copier le contenu (Ctrl+C)">Copier</button>
+      <button type="button" class="arbre-btn large" id="arbreColler" title="Coller le contenu (Ctrl+V)" disabled>Coller</button>
+      <span class="arbre-sep"></span>
       <button type="button" class="arbre-btn large danger" id="arbreSupprimer">Supprimer</button>
       <span class="arbre-sep"></span>
       <button type="button" class="arbre-btn large" id="arbreExport">Exporter</button>
@@ -1698,6 +1703,17 @@
     <aside class="arbre-panneau" id="arbrePanneau">
       <p class="arbre-panneau-vide">Sélectionne un nœud pour voir son effet.</p>
     </aside>
+
+    <div class="arbre-voile" id="arbreVoile" hidden></div>
+
+    <div class="arbre-confirm" id="arbreConfirm" hidden role="alertdialog" aria-modal="true">
+      <h3 id="arbreConfirmTitre">Réinitialiser l'arbre ?</h3>
+      <p class="arbre-confirm-texte" id="arbreConfirmTexte"></p>
+      <div class="arbre-dialogue-actions">
+        <button type="button" class="arbre-btn large danger" id="arbreConfirmOui">Oui, réinitialiser</button>
+        <button type="button" class="arbre-btn large" id="arbreConfirmNon">Annuler</button>
+      </div>
+    </div>
 
     <div class="arbre-dialogue" id="arbreDialogue" hidden>
       <h3 id="arbreDialogueTitre">Exporter</h3>
@@ -1713,6 +1729,6 @@
 </main>
 
 <script src="script.js?v=5"></script>
-<script src="arbre.js?v=8"></script>
+<script src="arbre.js?v=12"></script>
 </body>
 </html>

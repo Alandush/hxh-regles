@@ -138,6 +138,18 @@ body{
 .arbre-coeur .hex{ fill:var(--panel-3); stroke:var(--green-dark); }
 .arbre-coeur .kanji{ font-size:54px; fill:var(--green); }
 
+/* Les quintessences : le plus haut palier, gros hexagone à double contour */
+.arbre-quintessence .hex{ fill:var(--panel-3); stroke:var(--amber); stroke-width:3; }
+.arbre-quintessence .hex-interne{
+  fill:none; stroke:var(--amber); stroke-width:1; opacity:.45;
+  pointer-events:none;
+}
+.arbre-quintessence .kanji{ font-size:66px; fill:var(--amber); }
+.arbre-quintessence .etiquette{ font-size:17px; }
+.arbre-quintessence.actif .hex{ stroke-width:4; }
+/* À la sélection, les deux contours passent au vert ensemble */
+.arbre-noeud.actif .hex-interne{ stroke:var(--green); opacity:.6; }
+
 /* Ce que les joueurs apprennent : des cercles */
 .arbre-noeud .rond{
   fill:var(--panel-2); stroke:var(--line-3); stroke-width:2;
@@ -152,12 +164,19 @@ body{
 
 /* Les six natures gardent leur couleur canonique, en version sourde */
 .arbre-categorie .hex{ stroke-width:3; }
-.nature-renforcement    .hex{ stroke:#5f9e78; } .nature-renforcement    .kanji{ fill:#7cb593; }
-.nature-emission        .hex{ stroke:#b8904a; } .nature-emission        .kanji{ fill:#cfa863; }
-.nature-transformation  .hex{ stroke:#8a6fa0; } .nature-transformation  .kanji{ fill:#a58cb8; }
-.nature-materialisation .hex{ stroke:#b96b63; } .nature-materialisation .kanji{ fill:#cf877f; }
-.nature-manipulation    .hex{ stroke:#8a949a; } .nature-manipulation    .kanji{ fill:#a6b0b5; }
-.nature-specialisation  .hex{ stroke:#5f86a8; } .nature-specialisation  .kanji{ fill:#7fa4c2; }
+.nature-renforcement    .hex, .nature-renforcement    .hex-interne{ stroke:#5f9e78; }
+.nature-emission        .hex, .nature-emission        .hex-interne{ stroke:#b8904a; }
+.nature-transformation  .hex, .nature-transformation  .hex-interne{ stroke:#8a6fa0; }
+.nature-materialisation .hex, .nature-materialisation .hex-interne{ stroke:#b96b63; }
+.nature-manipulation    .hex, .nature-manipulation    .hex-interne{ stroke:#8a949a; }
+.nature-specialisation  .hex, .nature-specialisation  .hex-interne{ stroke:#5f86a8; }
+
+.nature-renforcement    .kanji{ fill:#7cb593; }
+.nature-emission        .kanji{ fill:#cfa863; }
+.nature-transformation  .kanji{ fill:#a58cb8; }
+.nature-materialisation .kanji{ fill:#cf877f; }
+.nature-manipulation    .kanji{ fill:#a6b0b5; }
+.nature-specialisation  .kanji{ fill:#7fa4c2; }
 
 /* --- outils --- */
 .arbre-outils{
@@ -175,6 +194,8 @@ body{
 
 .arbre-btn.actif{ color:var(--green-soft); background:var(--green-tint); border-color:var(--green); }
 .arbre-btn.danger:hover{ color:var(--red); border-color:#5a3b37; }
+.arbre-btn:disabled{ opacity:.4; cursor:default; }
+.arbre-btn:disabled:hover{ color:var(--text-2); border-color:var(--line-2); background:var(--panel); }
 
 .arbre-outils-edition{
   position:absolute; top:64px; left:18px; z-index:2;
@@ -222,6 +243,22 @@ body{
   background:transparent; border:1px solid var(--line-3); border-radius:4px;
 }
 .arbre-lien-suppr:hover{ color:var(--red); border-color:#5a3b37; }
+
+/* --- voile derrière les fenêtres modales --- */
+.arbre-voile{ position:absolute; inset:0; z-index:4; background:rgba(0,0,0,.6); }
+
+/* --- confirmation d'une action destructrice --- */
+.arbre-confirm{
+  position:absolute; z-index:5;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(440px, calc(100% - 48px));
+  padding:24px 26px;
+  background:var(--panel); border:1px solid var(--red); border-radius:var(--radius);
+}
+.arbre-confirm h3{
+  margin:0 0 10px; font-family:var(--f-title); font-size:1.2rem; color:var(--red);
+}
+.arbre-confirm-texte{ margin:0; font-size:14.5px; line-height:1.6; color:var(--text-2); }
 
 /* --- dialogue export / import --- */
 .arbre-dialogue{

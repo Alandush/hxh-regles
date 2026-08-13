@@ -114,7 +114,7 @@
      RENDU
      --------------------------------------------------------- */
 
-  var TAILLE = { coeur: 82, categorie: 66, entree: 34 };
+  var TAILLE = { quintessence: 112, coeur: 82, categorie: 66, entree: 34 };
 
   function el(nom, attrs) {
     var e = document.createElementNS(SVGNS, nom);
@@ -181,7 +181,15 @@
         }
       } else {
         g.appendChild(el('polygon', { points: cheminHex(r), class: 'hex' }));
-        if (n.kanji) g.appendChild(texte(n.kanji, 0, n.type === 'coeur' ? 14 : 10, 'kanji'));
+        // Les quintessences portent un second contour : elles se lisent comme
+        // un palier au-dessus des autres hexagones, même très dézoomées.
+        if (n.type === 'quintessence') {
+          g.appendChild(el('polygon', { points: cheminHex(r - 12), class: 'hex-interne' }));
+        }
+        if (n.kanji) {
+          g.appendChild(texte(n.kanji, 0,
+            n.type === 'quintessence' ? 20 : n.type === 'coeur' ? 14 : 10, 'kanji'));
+        }
         if (n.nom) {
           var etiq = el('text', { x: 0, y: r + 24, class: 'etiquette' });
           etiq.textContent = n.nom + (n.xp ? '  ·  ' + n.xp + ' XP' : '');
@@ -225,8 +233,9 @@
       return;
     }
 
-    var typeLisible = n.type === 'categorie' ? 'Nature du Nen'
-                    : n.type === 'coeur'     ? 'Cœur'
+    var typeLisible = n.type === 'categorie'    ? 'Nature du Nen'
+                    : n.type === 'quintessence' ? 'Quintessence'
+                    : n.type === 'coeur'        ? 'Cœur'
                     : 'Amélioration';
 
     panneau.innerHTML =
@@ -244,8 +253,9 @@
 
     var titre = document.createElement('p');
     titre.className = 'arbre-panneau-type';
-    titre.textContent = n.type === 'entree' ? 'Cercle' :
-                        n.type === 'coeur' ? 'Hexagone — cœur' : 'Hexagone';
+    titre.textContent = n.type === 'entree'       ? 'Cercle' :
+                        n.type === 'quintessence' ? 'Quintessence' :
+                        n.type === 'coeur'        ? 'Hexagone — cœur' : 'Hexagone';
     panneau.appendChild(titre);
 
     panneau.appendChild(champ('Titre', 'text', n.nom, function (v) {
@@ -404,16 +414,26 @@
 
   var glisse = false, deplace = false, capture = false;
   var startX = 0, startY = 0, lastX = 0, lastY = 0;
-  var cible = null, noeudTire = null;
+  var cible = null, noeudTire = null, boutonPrincipal = false;
   var SEUIL = 4;
 
+  // Le clic molette déclenche le défilement automatique du navigateur : on le coupe.
+  svg.addEventListener('mousedown', function (e) {
+    if (e.button === 1) e.preventDefault();
+  });
+
   svg.addEventListener('pointerdown', function (e) {
+    if (e.button === 2) return;                 // clic droit : on ne saisit rien
+    boutonPrincipal = (e.button === 0);
+
     glisse = true; deplace = false; capture = false;
     startX = lastX = e.clientX;
     startY = lastY = e.clientY;
     var g = e.target.closest ? e.target.closest('.arbre-noeud') : null;
     cible = g;
-    noeudTire = (edition && g) ? index[g.dataset.id] : null;
+    // Seul le bouton gauche déplace un nœud. La molette ne fait que
+    // faire glisser la vue, même en mode édition.
+    noeudTire = (edition && boutonPrincipal && g) ? index[g.dataset.id] : null;
   });
 
   svg.addEventListener('pointermove', function (e) {
@@ -441,7 +461,8 @@
   function finGlisse(e) {
     if (!glisse) return;
 
-    if (!deplace) {
+    // Un clic molette ne sélectionne rien : il ne sert qu'à déplacer la vue
+    if (!deplace && boutonPrincipal) {
       if (cible) {
         var id = cible.dataset.id;
         if (modeLiaison && selection && id !== selection) {
@@ -452,7 +473,7 @@
       } else {
         selectionner(null);
       }
-    } else if (noeudTire) {
+    } else if (deplace && noeudTire) {
       sauver();
     }
 
@@ -477,6 +498,47 @@
   var btnEdition    = document.getElementById('arbreEdition');
   var btnLier       = document.getElementById('arbreLier');
   var btnReset      = document.getElementById('arbreReset');
+  var btnCopier     = document.getElementById('arbreCopier');
+  var btnColler     = document.getElementById('arbreColler');
+
+  /* ---------- copier / coller le contenu d'un nœud ---------- */
+  // On ne copie que ce qui décrit la capacité : titre, coût, effet, kanji.
+  // La position, le type et les liaisons du nœud collé ne bougent pas.
+  var presse = null;
+
+  function copier() {
+    var n = index[selection];
+    if (!n) return;
+    presse = { nom:n.nom || '', xp:n.xp || 0, effet:n.effet || '', kanji:n.kanji || '' };
+    btnColler.disabled = false;
+    btnColler.title = 'Coller « ' + (presse.nom || 'contenu vide') + ' » (Ctrl+V)';
+    aide.textContent = 'Copié : « ' + (presse.nom || 'contenu vide') + ' » — sélectionne un nœud puis Coller';
+  }
+
+  function coller() {
+    var n = index[selection];
+    if (!n || !presse) return;
+    n.nom = presse.nom;
+    n.xp = presse.xp;
+    n.effet = presse.effet;
+    if (presse.kanji) n.kanji = presse.kanji; else delete n.kanji;
+    appliquer();
+    majPanneau();
+    aide.textContent = 'Collé dans « ' + (n.nom || 'ce nœud') + ' »';
+  }
+
+  btnCopier.addEventListener('click', copier);
+  btnColler.addEventListener('click', coller);
+
+  document.addEventListener('keydown', function (e) {
+    if (!edition || !selection) return;
+    if (!(e.ctrlKey || e.metaKey)) return;
+    var t = e.target;
+    // On laisse le copier-coller normal aux champs de saisie
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+    if (e.key === 'c' || e.key === 'C') { e.preventDefault(); copier(); }
+    if (e.key === 'v' || e.key === 'V') { e.preventDefault(); coller(); }
+  });
 
   function basculerLien(a, b) {
     var existant = etat.liens.filter(function (l) {
@@ -488,13 +550,17 @@
     majPanneau();
   }
 
+  var PREFIXE = { entree:'c', quintessence:'q', categorie:'h' };
+
   function ajouter(type) {
     var c = centreMonde();
     var n = index[selection];
-    // Un nœud sélectionné sert d'ancre : on place le nouveau à côté et on relie
-    var base = n ? { x: n.x + 150, y: n.y } : c;
+    // Un nœud sélectionné sert d'ancre : on place le nouveau à côté et on relie.
+    // On écarte davantage les quintessences, qui sont bien plus larges.
+    var ecart = type === 'quintessence' ? 260 : 150;
+    var base = n ? { x: n.x + ecart, y: n.y } : c;
     var nouveau = {
-      id: nouvelId(type === 'entree' ? 'c' : 'h'),
+      id: nouvelId(PREFIXE[type] || 'n'),
       nom: '', type: type, x: base.x, y: base.y, xp: 0, effet: ''
     };
     if (n && n.nature) nouveau.nature = n.nature;
@@ -527,6 +593,7 @@
 
   document.getElementById('arbreAddCercle').addEventListener('click', function () { ajouter('entree'); });
   document.getElementById('arbreAddHex').addEventListener('click', function () { ajouter('categorie'); });
+  document.getElementById('arbreAddQuint').addEventListener('click', function () { ajouter('quintessence'); });
   document.getElementById('arbreSupprimer').addEventListener('click', supprimer);
 
   btnLier.addEventListener('click', function () {
@@ -548,6 +615,32 @@
   var dlgAide   = document.getElementById('arbreDialogueAide');
   var dlgTexte  = document.getElementById('arbreDialogueTexte');
   var dlgOk     = document.getElementById('arbreDialogueOk');
+  var voile     = document.getElementById('arbreVoile');
+
+  var cfm       = document.getElementById('arbreConfirm');
+  var cfmTitre  = document.getElementById('arbreConfirmTitre');
+  var cfmTexte  = document.getElementById('arbreConfirmTexte');
+  var cfmOui    = document.getElementById('arbreConfirmOui');
+  var cfmNon    = document.getElementById('arbreConfirmNon');
+
+  function fermerModales() {
+    dlg.hidden = true;
+    cfm.hidden = true;
+    voile.hidden = true;
+  }
+
+  // Demande une confirmation avant une action destructrice
+  function confirmer(titre, message, onOui) {
+    cfmTitre.textContent = titre;
+    cfmTexte.textContent = message;
+    cfmOui.onclick = function () { fermerModales(); onOui(); };
+    voile.hidden = false;
+    cfm.hidden = false;
+    cfmNon.focus();
+  }
+
+  cfmNon.addEventListener('click', fermerModales);
+  voile.addEventListener('click', fermerModales);
 
   function ouvrirDialogue(titre, aideTxt, contenu, lectureSeule, action) {
     dlgTitre.textContent = titre;
@@ -556,6 +649,7 @@
     dlgTexte.readOnly = !!lectureSeule;
     dlgOk.hidden = !action;
     dlgOk.onclick = action || null;
+    voile.hidden = false;
     dlg.hidden = false;
     dlgTexte.focus();
     if (lectureSeule) dlgTexte.select();
@@ -579,34 +673,29 @@
           selection = null;
           appliquer();
           majPanneau();
-          dlg.hidden = true;
+          fermerModales();
         } catch (err) {
           dlgAide.textContent = 'JSON invalide : ' + err.message;
         }
       });
   });
 
-  document.getElementById('arbreDialogueFermer').addEventListener('click', function () {
-    dlg.hidden = true;
-  });
+  document.getElementById('arbreDialogueFermer').addEventListener('click', fermerModales);
 
-  var resetArme = false;
   btnReset.addEventListener('click', function () {
-    if (!resetArme) {
-      resetArme = true;
-      btnReset.textContent = 'Confirmer ?';
-      setTimeout(function () {
-        resetArme = false; btnReset.textContent = 'Réinitialiser';
-      }, 4000);
-      return;
-    }
-    resetArme = false;
-    btnReset.textContent = 'Réinitialiser';
-    etat = donneesDefaut();
-    selection = null;
-    appliquer();
-    recentrer();
-    majPanneau();
+    confirmer(
+      'Réinitialiser l\'arbre ?',
+      'Tes ' + etat.noeuds.length + ' nœuds et ' + etat.liens.length + ' liaisons seront ' +
+      'remplacés par l\'arbre d\'origine. Cette action est irréversible — pense à exporter ' +
+      'ton travail avant si tu veux le garder.',
+      function () {
+        etat = donneesDefaut();
+        selection = null;
+        appliquer();
+        recentrer();
+        majPanneau();
+        aide.textContent = 'Arbre réinitialisé.';
+      });
   });
 
   /* ---------------------------------------------------------
@@ -623,7 +712,7 @@
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !dlg.hidden) dlg.hidden = true;
+    if (e.key === 'Escape' && (!dlg.hidden || !cfm.hidden)) fermerModales();
   });
 
   dessiner();
